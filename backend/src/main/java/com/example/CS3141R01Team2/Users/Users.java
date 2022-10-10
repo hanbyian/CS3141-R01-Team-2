@@ -18,9 +18,16 @@ public class Users {
     )
     private Long userID;
 
+    @Column(nullable=false)
     private String username;
+
+    @Column(nullable=false)
     private String password;
+
+    @Column(nullable=false)
     private String email;
+
+    @Column(nullable=false)
     private String name;
 
     public String getUsername() {

@@ -17,7 +17,10 @@ public class StudySet {
     )
     private Long setID;
 
+    @Column(nullable = false)
     private String setName;
+    
+    @Column(nullable=false)
     private String setOwner;
     
     public String getSetName() {

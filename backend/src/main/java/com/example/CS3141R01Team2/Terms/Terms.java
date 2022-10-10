@@ -17,8 +17,13 @@ public class Terms {
     )
     private Long termID;
 
+    @Column(nullable=false)
     private Long parentSet;
+
+    @Column(nullable=false)
     private Long term;
+
+    @Column(nullable=false)
     private Long definition;
     
     public Long getParentSet() {
