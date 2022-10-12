@@ -1,5 +1,7 @@
 package com.example.CS3141R01Team2.Terms;
 
+import com.example.CS3141R01Team2.StudySet.StudySet;
+
 import javax.persistence.*;
 
 @Entity(name="terms")
@@ -15,40 +17,42 @@ public class Terms {
         strategy = GenerationType.SEQUENCE,
         generator = "termSequence"
     )
+    @Column(updatable = false)
     private Long termID;
 
-    @Column(nullable=false)
-    private Long parentSet;
+    @ManyToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="parentSet", nullable = false)
+    private StudySet parentSet;
 
     @Column(nullable=false)
-    private Long term;
+    private String term;
 
     @Column(nullable=false)
-    private Long definition;
+    private String definition;
     
-    public Long getParentSet() {
+    public StudySet getParentSet() {
         return parentSet;
     }
-    public void setParentSet(Long parentSet) {
+    public void setParentSet(StudySet parentSet) {
         this.parentSet = parentSet;
     }
-    public Long getTerm() {
+    public String getTerm() {
         return term;
     }
-    public void setTerm(Long term) {
+    public void setTerm(String term) {
         this.term = term;
     }
-    public Long getDefinition() {
+    public String getDefinition() {
         return definition;
     }
-    public void setDefinition(Long definition) {
+    public void setDefinition(String definition) {
         this.definition = definition;
     }
     public Long getTermID() {
         return termID;
     }
     
-    public Terms(Long parentSet, Long term, Long definition) {
+    public Terms(StudySet parentSet, String term, String definition) {
         this.parentSet = parentSet;
         this.term = term;
         this.definition = definition;
