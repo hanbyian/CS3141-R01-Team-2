@@ -6,6 +6,7 @@
 
 ### VS Code ###
 .vscode/
+/backend/CS3141-R01-Team-2.jar
 
 ### NetBeans ###
 /nbproject/private/
