@@ -2,11 +2,11 @@ import './App.css';
 import ReactDOM from 'react-dom/client';
 import render from 'react-dom';
 import React, { Component } from 'react';
-import { setList, SetDisplay, header } from './groups.js';
+import { HomePage } from './groups.js';
+import {root} from './index.js';
 
 function App() {
-  const container = document.getElementById('root');
-  const root = ReactDOM.createRoot(container);
+
   const emptySampleData = {};
   const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
   function SignIn(){
@@ -14,7 +14,7 @@ function App() {
       //props.password and props.username using props param instead?
       //this function calls api to confirm username and password signin, if signin is a good account then render home page.
       const data = {};//data is what we get from api call
-      root.render(setList(emptySampleData));
+      root.render(<HomePage setKey={Object.keys(sampleData.sets)[0]} setValue={Object.entries(sampleData.sets)[0][1]} sets={sampleData.sets}/>);
       return;
     }
     return(
