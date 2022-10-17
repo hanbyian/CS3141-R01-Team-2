@@ -18,4 +18,8 @@ public class StudySetService {
     public List<StudySet> showSets(){
         return studySetRepository.findAll();
     }
+
+//    public List<StudySet> showSetsForUser(){
+//
+//    }
 }

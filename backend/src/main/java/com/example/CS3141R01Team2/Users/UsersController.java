@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping(path="api/v1/users")
+
+//Controllers expose the endpoints to whatever needs to call them.
+@RestController //RestController means http request will be handled by this controller
+@RequestMapping(path="api/v1/users") //Tells where to search for the endpoint in when we request something
 public class UsersController {
 
     private final UsersService userService;
@@ -19,7 +21,7 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping //States that the following method is a Get Request
     public List<Users> showUsers(){
       return userService.showUsers();  
     }
