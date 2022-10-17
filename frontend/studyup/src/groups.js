@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
+import root from './index.js';
 
+const emptySampleData = {};
+const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 export const flashcards = (
     <div></div>
     );
@@ -7,7 +10,53 @@ export const flashcards = (
 export const footer = (
     <div></div>
     );
+export class LoginPage extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {showLogin:true}
+        this.handleLoginSignup = this.handleLoginSignup.bind(this);
+    }
+    handleLoginSignup(){
+        this.setState({showLogin:(!this.state.showLogin)});
+    }
+    confirmUser(){
+        root.render(<HomePage setKey={Object.keys(sampleData.sets)[0]} setValue={Object.entries(sampleData.sets)[0][1]} sets={sampleData.sets}/>);
+    }
+    registerUser(){
 
+    }
+    render(){
+        let login = (
+        <div className="signInForm">
+            <form onSubmit={this.confirmUser}>
+                <input type="text" placeholder="username"></input>
+                <input type="text" placeholder="password"></input>
+                <button type="submit">Log In</button>
+            </form>
+            <button onClick={this.handleLoginSignup}>Sign Up</button>
+        </div>);
+        let signup = (
+        <div className="loginForm">
+            <form onSubmit={this.registerUser}>
+                <input type="text" placeholder="select a username"></input>
+                <input type="text" placeholder="select a password"></input>
+                <button type="submit">Sign Up</button>
+            </form>
+            <button onClick={this.handleLoginSignup}>Log In</button>
+        </div>);
+        let showing = <div></div>;
+        if(this.state.showLogin){
+            showing = login;
+        }else{
+            showing = signup;
+        }
+        return (
+            <div>
+                {showing}
+            </div>
+        );
+    }
+}
 export class HomePage extends React.Component{
     constructor(props){
         super(props);
