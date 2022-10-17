@@ -10,7 +10,6 @@ public class TermsService {
 
     private final TermsRepository termsRepository;
 
-    
     @Autowired
     public TermsService(TermsRepository termsRepository) {
         this.termsRepository = termsRepository;
@@ -19,5 +18,9 @@ public class TermsService {
     public List<Terms> showTerms(){
         return termsRepository.findAll();
     }
-    
+
+    // addTerm, given a term and definition
+    // setTerm, change a term to a given term
+    // setDefinition, change a definition of a given term
+    // checkDefinition and/or getDefinition (does frontend want a boolean or a terms?) given a term
 }

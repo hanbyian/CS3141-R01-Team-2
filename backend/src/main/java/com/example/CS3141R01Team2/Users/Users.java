@@ -34,7 +34,7 @@ public class Users {
     private String username;
 
     @Column(nullable=false)
-    private String password;
+    private String password;    //NOTE: change password data type to hash for security
 
     @Column(nullable=false)
     private String email;
