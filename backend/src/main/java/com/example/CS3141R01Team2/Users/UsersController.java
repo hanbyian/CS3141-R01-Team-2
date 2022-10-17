@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 // import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,10 +22,18 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping //States that the following method is a Get Request
+    @GetMapping ("/showusers")//States that the following method is a Get Request
     public List<Users> showUsers(){
       return userService.showUsers();  
     }
 
-     
+    @PostMapping("/createuser")
+    public void createUser(String username, String password, String email, String name) {  //convert password to hash?
+        userService.createUser(username, password, email, name);
+    }
+
+    // public boolean confirmUser(String username, String password){
+    //     return confirmUser(username, password);
+    // }
+    // commented out until further discussion with group
 }
