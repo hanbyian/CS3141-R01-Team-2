@@ -1,8 +1,10 @@
 package com.example.CS3141R01Team2.Users;
 
+import java.util.List;
 import java.util.Set;
 
 import com.example.CS3141R01Team2.StudySet.StudySet;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -34,7 +36,7 @@ public class Users {
     private String username;
 
     @Column(nullable=false)
-    private String password;
+    private String password;    //NOTE: change password data type to hash for security
 
     @Column(nullable=false)
     private String email;
@@ -43,6 +45,7 @@ public class Users {
     private String name;
 
     @OneToMany(mappedBy="setID")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<StudySet> studySets;
 
     public String getUsername() {
@@ -75,6 +78,9 @@ public class Users {
         this.password = password;
         this.email = email;
         this.name = name;
+    }
+    public void addUsers(List<StudySet> sets){
+
     }
     public Users() {
     }

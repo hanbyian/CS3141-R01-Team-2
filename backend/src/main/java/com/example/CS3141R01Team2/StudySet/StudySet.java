@@ -4,6 +4,7 @@ import java.util.Set;
 
 import com.example.CS3141R01Team2.Terms.Terms;
 import com.example.CS3141R01Team2.Users.Users;
+import org.hibernate.annotations.Cascade;
 
 
 import javax.persistence.*;
@@ -33,6 +34,7 @@ public class StudySet {
     private Users setOwner;
 
     @OneToMany(mappedBy ="parentSet")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Terms> terms;
     
     public String getSetName() {

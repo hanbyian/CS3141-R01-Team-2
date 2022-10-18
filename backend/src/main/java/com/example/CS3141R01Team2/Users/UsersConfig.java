@@ -26,7 +26,7 @@ public class UsersConfig {
             "Ian"
             );
             
-            repository.saveAll(
+            repository.saveAll(         //saves users
                 List.of(wil, ian)
             );
         };
