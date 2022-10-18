@@ -26,8 +26,8 @@ public class UsersController {
     }
 
     @PostMapping
-    public void createUser(String username, String password, String email, String name) {  //convert password to hash?
-        userService.createUser(username, password, email, name);
+    public void createUser(Users user) {  //convert password to hash?
+        userService.createUser(user);
     }
 
     // public boolean confirmUser(String username, String password){

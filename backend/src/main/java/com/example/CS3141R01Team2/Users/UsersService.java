@@ -23,23 +23,20 @@ public class UsersService {
     }
 
     /**
-     * createUser
-     * @param username
-     * @param password
-     * @param email
-     * @param name
+     *
+     * @param user
      */
-    public void createUser(String username, String password, String email, String name) {
-        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+    public void createUser(Users user) {
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(user.getUsername());
 
         if(getUserByUsername.isPresent()){
-            throw new IllegalArgumentException("username already exists!");
+            throw new IllegalStateException("username already exists!");
         } else{
-            Optional<Users> getUserByEmail = usersRepository.findByEmail(email);
+            Optional<Users> getUserByEmail = usersRepository.findByEmail(user.getEmail());
             if(getUserByEmail.isPresent()){
-                throw new IllegalArgumentException("email already taken!");
+                throw new IllegalStateException("email already taken!");
             } else{
-                usersRepository.save(new Users(username, password, email, name));
+                usersRepository.save(user);
             }
         }
 
