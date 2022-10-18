@@ -42,6 +42,22 @@ public class UsersService {
 
     }
 
+    public boolean testPassword(String username, String inputpassword){
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+
+        if(!getUserByUsername.isPresent()){
+            throw new IllegalStateException("user does not exist");
+        } else{
+            if(inputpassword == getUserByUsername.get().getPassword()){
+                return true;
+            } else {
+                return false;
+            }
+        }
+    }
+
+
+
 //    public boolean confirmUser(String username, String password) {
 //        return ( usersRepository.findById(username) && usersRepository.findById(password) );
 //    }

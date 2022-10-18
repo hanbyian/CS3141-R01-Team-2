@@ -1,6 +1,7 @@
 package com.example.CS3141R01Team2.Terms;
 
 import com.example.CS3141R01Team2.StudySet.StudySet;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -18,16 +19,20 @@ public class Terms {
         generator = "termSequence"
     )
     @Column(updatable = false)
+    @NonNull
     private Long termID;
 
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="parentSet", nullable = false)
+    @JoinColumn(name="parentSet")
+    @NonNull
     private StudySet parentSet;
 
     @Column(nullable=false)
+    @NonNull
     private String term;
 
     @Column(nullable=false)
+    @NonNull
     private String definition;
     
     public StudySet getParentSet() {

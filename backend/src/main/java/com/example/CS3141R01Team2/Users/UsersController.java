@@ -20,14 +20,19 @@ public class UsersController {
         this.userService = userService;
     }
 
-    @GetMapping
+    @GetMapping("/showUsers")
     public List<Users> showUsers(){
       return userService.showUsers();  
     }
 
-    @PostMapping
+    @PostMapping("/createUser")
     public void createUser(Users user) {  //convert password to hash?
         userService.createUser(user);
+    }
+
+    @GetMapping("/authenticate")
+    public Boolean getPassword(String username, String inputpassword){
+        return userService.testPassword(username, inputpassword);
     }
 
     // public boolean confirmUser(String username, String password){

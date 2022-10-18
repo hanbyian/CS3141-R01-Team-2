@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.example.CS3141R01Team2.StudySet.StudySet;
 import org.hibernate.annotations.Cascade;
+import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
@@ -30,18 +31,23 @@ public class Users {
     )
     
     @Column(updatable = false)
+    @NonNull
     private Long userID;
 
-    @Column(nullable=false, unique = true)
+    @Column(unique = true)
+    @NonNull
     private String username;
 
-    @Column(nullable=false)
+    @Column()
+    @NonNull
     private String password;    //NOTE: change password data type to hash for security
 
-    @Column(nullable=false)
+    @Column(unique = true)
+    @NonNull
     private String email;
 
-    @Column(nullable=false)
+    @Column()
+    @NonNull
     private String name;
 
     @OneToMany(mappedBy="setID")
