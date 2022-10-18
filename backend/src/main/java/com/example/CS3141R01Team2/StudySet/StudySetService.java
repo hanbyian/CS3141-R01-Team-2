@@ -1,6 +1,7 @@
 package com.example.CS3141R01Team2.StudySet;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.CS3141R01Team2.Users.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ public class StudySetService {
         return studySetRepository.findAll();
     }
 
-//    public List<StudySet> showSetsForUser(){
-//
-//    }
+    public List<StudySet> showSetsForUser(String username){
+        Optional<StudySet> outStudySets = studySetRepository.findStudySetsByUser(username);
+        return outStudySets.stream().toList();
+    }
     @PostMapping
     public void createStudySet(String setName, Users setOwner) {
         studySetRepository.save(new StudySet(setName, setOwner));

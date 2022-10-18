@@ -70,10 +70,4 @@ public class UsersService {
         }
     }
 
-
-
-//    public boolean confirmUser(String username, String password) {
-//        return ( usersRepository.findById(username) && usersRepository.findById(password) );
-//    }
-// commented out until further discussion with group
 }

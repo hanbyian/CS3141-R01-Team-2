@@ -57,7 +57,7 @@ public class Terms {
         return termID;
     }
     
-    public Terms(StudySet parentSet, String term, String definition) {
+    public Terms(StudySet parentSet, String term, String definition) {  // given actual StudySet or setID???
         this.parentSet = parentSet;
         this.term = term;
         this.definition = definition;

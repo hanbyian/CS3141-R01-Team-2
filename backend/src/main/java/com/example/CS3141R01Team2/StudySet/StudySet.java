@@ -24,7 +24,7 @@ public class StudySet {
         generator = "studySetSequence"
     )
 
-    @Column(updatable = false)
+    @Column(updatable = false)      // unique?
     @NonNull
     private Long setID;
 
