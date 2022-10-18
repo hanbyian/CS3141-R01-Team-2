@@ -4,6 +4,8 @@ import java.util.Set;
 
 import com.example.CS3141R01Team2.Terms.Terms;
 import com.example.CS3141R01Team2.Users.Users;
+import org.hibernate.annotations.Cascade;
+import org.springframework.lang.NonNull;
 
 
 import javax.persistence.*;
@@ -23,16 +25,20 @@ public class StudySet {
     )
 
     @Column(updatable = false)
+    @NonNull
     private Long setID;
 
     @Column(nullable = false)
+    @NonNull
     private String setName;
 
     @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="setOwner", nullable = false)
+    @JoinColumn(name="setOwner")
+    @NonNull
     private Users setOwner;
 
     @OneToMany(mappedBy ="parentSet")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Terms> terms;
     
     public String getSetName() {

@@ -24,12 +24,17 @@ public class UsersController {
 
     @GetMapping ("/showusers")//States that the following method is a Get Request
     public List<Users> showUsers(){
-      return userService.showUsers();  
+      return userService.showUsers();
     }
 
-    @PostMapping("/createuser")
-    public void createUser(String username, String password, String email, String name) {  //convert password to hash?
-        userService.createUser(username, password, email, name);
+    @PostMapping("/createUser")
+    public void createUser(Users user) {  //convert password to hash?
+        userService.createUser(user);
+    }
+
+    @GetMapping("/authenticate")
+    public Boolean getPassword(String username, String inputpassword){
+        return userService.testPassword(username, inputpassword);
     }
 
     // public boolean confirmUser(String username, String password){

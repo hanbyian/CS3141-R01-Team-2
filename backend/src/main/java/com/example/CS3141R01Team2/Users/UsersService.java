@@ -14,7 +14,7 @@ public class UsersService {
 
     private final UsersRepository usersRepository;
 
-    
+
     @Autowired
     public UsersService(UsersRepository usersRepository) {
         this.usersRepository = usersRepository;
@@ -37,29 +37,40 @@ public class UsersService {
 //        return false;
 //    }
     /**
-     * createUser
-     * @param username
-     * @param password
-     * @param email
-     * @param name
+     *
+     * @param user
      */
+    public void createUser(Users user) {
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(user.getUsername());
 
-    @PostMapping
-    public void createUser(String username, String password, String email, String name) {
-        Optional<Users> findUserByName = usersRepository.findUserByUsername(username);
-
-        if(findUserByName.isPresent()){
-            throw new IllegalArgumentException("username already exist!");
-        }
-        else{
-            Optional<Users> findUserByEmail = usersRepository.findUserByEmail(email);
-            if(findUserByEmail.isPresent()){
-                throw new IllegalArgumentException("email already exist!");
+        if(getUserByUsername.isPresent()){
+            throw new IllegalStateException("username already exists!");
+        } else{
+            Optional<Users> getUserByEmail = usersRepository.findByEmail(user.getEmail());
+            if(getUserByEmail.isPresent()){
+                throw new IllegalStateException("email already taken!");
             } else{
-                usersRepository.save(new Users(username, password, email, name));
+                usersRepository.save(user);
+            }
+        }
+
+    }
+
+    public boolean testPassword(String username, String inputpassword){
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+
+        if(!getUserByUsername.isPresent()){
+            throw new IllegalStateException("user does not exist");
+        } else{
+            if(inputpassword == getUserByUsername.get().getPassword()){
+                return true;
+            } else {
+                return false;
             }
         }
     }
+
+
 
 //    public boolean confirmUser(String username, String password) {
 //        return ( usersRepository.findById(username) && usersRepository.findById(password) );
