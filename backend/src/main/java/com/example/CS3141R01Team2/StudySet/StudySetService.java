@@ -43,11 +43,10 @@ public class StudySetService {
      * being the user to whom the study set will be "owned" by. The study set will be
      * tied to this user.
      *
-     * @param setName   study set's, that is to be created, name
-     * @param setOwner  username to whom study set will be connected to
+     * @param set
      */
-    public void createStudySet(String setName, Users setOwner) {
-        studySetRepository.save(new StudySet(setName, setOwner));
+    public void createStudySet(StudySet set) {
+        studySetRepository.save(set);
     }
 //    public void deleteStudySet(Long setID) {  // does deleteStudySet need a findStudySet method to work?
 //        studySetRepository.delete(studySetRepository.findById(setID));
