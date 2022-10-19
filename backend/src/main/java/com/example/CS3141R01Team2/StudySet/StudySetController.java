@@ -23,8 +23,8 @@ public class StudySetController {
     }
 
     @PostMapping("/createStudySet")
-    public void createStudySet(String setName, Users setOwner) {
-        studySetService.createStudySet(setName, setOwner);
+    public void createStudySet(@RequestBody StudySet set) {
+        studySetService.createStudySet(set);
     }
 //    @DeleteMapping
 //    public void deleteStudySet(Long setID) {
