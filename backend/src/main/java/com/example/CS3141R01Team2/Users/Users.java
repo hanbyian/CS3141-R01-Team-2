@@ -9,7 +9,6 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
-
 @Entity(name="users") //Entity tag used for HQL (hibernate queries)
 @Table(
     name="users",

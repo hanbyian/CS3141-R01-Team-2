@@ -20,8 +20,8 @@ public class TermsService {
         return termsRepository.findAll();
     }
 
-    public void addTerm(StudySet parentSet, String term, String definition) {   // given actual StudySet or setID???
-        termsRepository.save(new Terms(parentSet, term, definition));   //.save wants an Entity
+    public void addTerm(Terms term) {
+        termsRepository.save(term);
     }
     public void deleteTerm(Terms delTerm) {
         termsRepository.delete(delTerm);
