@@ -17,16 +17,16 @@ public class StudySetController {
         this.studySetService = studySetService;
     }
 
-    @GetMapping
+    @GetMapping("/showSets")
     public List<StudySet> showSets(){
         return studySetService.showSets();
     }
 
-    @PostMapping
+    @PostMapping("/createStudySet")
     public void createStudySet(String setName, Users setOwner) {
         studySetService.createStudySet(setName, setOwner);
     }
-    @DeleteMapping
+//    @DeleteMapping
 //    public void deleteStudySet(Long setID) {
 //        studySetService.deleteStudySet(setID);
 //    }
@@ -34,6 +34,9 @@ public class StudySetController {
     public void setSetName(StudySet currentSet, String newSetName) {
         studySetService.setSetName(currentSet, newSetName);
     }
-    // getSetOwner
+    @GetMapping("/showSetsForUser")
+    public List<StudySet> showSetsForUser(String username) {
+        return studySetService.showSetsForUser(username);
+    }
 
 }

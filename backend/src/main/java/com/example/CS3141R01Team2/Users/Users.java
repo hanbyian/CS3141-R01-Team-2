@@ -31,7 +31,7 @@ public class Users {
     )
     
     @Column(updatable = false)
-    @NonNull
+    @NonNull      // unique?
     private Long userID;
 
     @Column(unique = true)
@@ -43,7 +43,7 @@ public class Users {
     private String password;    //NOTE: change password data type to hash for security
 
     @Column(unique = true)
-    @NonNull
+    @NonNull     // unique?, or multiple accounts ok?
     private String email;
 
     @Column()
@@ -90,7 +90,4 @@ public class Users {
     }
     public Users() {
     }
-
-
-
 }
