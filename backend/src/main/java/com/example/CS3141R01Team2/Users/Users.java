@@ -49,6 +49,14 @@ public class Users {
     @NonNull
     private String name;
 
+    public Set<StudySet> getStudySets() {
+        return studySets;
+    }
+
+    public void setStudySets(Set<StudySet> studySets) {
+        this.studySets = studySets;
+    }
+
     @OneToMany(mappedBy="setID")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<StudySet> studySets;
@@ -84,9 +92,7 @@ public class Users {
         this.email = email;
         this.name = name;
     }
-    public void addUsers(List<StudySet> sets){
 
-    }
     public Users() {
     }
 }

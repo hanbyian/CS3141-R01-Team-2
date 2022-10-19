@@ -4,20 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.CS3141R01Team2.Users.Users;
+import com.example.CS3141R01Team2.Users.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 
 @Service
 public class StudySetService {
     
     private final StudySetRepository studySetRepository;
 
+    private final UsersRepository usersRepository;
+
     @Autowired
-    public StudySetService(StudySetRepository studySetRepository) {
+    public StudySetService(StudySetRepository studySetRepository, UsersRepository usersRepository) {
         this.studySetRepository = studySetRepository;
+        this.usersRepository = usersRepository;
     }
 
     public List<StudySet> showSets() {
@@ -43,10 +44,18 @@ public class StudySetService {
      * being the user to whom the study set will be "owned" by. The study set will be
      * tied to this user.
      *
-     * @param set
+     * @param setName
+     * @param setOwner
      */
-    public void createStudySet(StudySet set) {
-        studySetRepository.save(set);
+    public void createStudySet(String setName, String setOwner) {
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(setOwner);
+
+        if(getUserByUsername.isPresent()){
+            studySetRepository.save(new StudySet(setName, getUserByUsername.get()));
+        } else{
+            throw new IllegalStateException("user " + setOwner + " does not exist!");
+        }
+
     }
 //    public void deleteStudySet(Long setID) {  // does deleteStudySet need a findStudySet method to work?
 //        studySetRepository.delete(studySetRepository.findById(setID));
