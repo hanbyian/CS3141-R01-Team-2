@@ -37,8 +37,11 @@ public class UsersService {
 //        return false;
 //    }
     /**
+     * Take in a user entity and checks if the username and email are both unique.
+     * Once checked, a user account is saved in usersRepository which allows a user to create
+     * and view study sets and terms.
      *
-     * @param user
+     * @param user  user entity, user + password that wants to be created
      */
     public void createUser(Users user) {
         Optional<Users> getUserByUsername = usersRepository.findByUsername(user.getUsername());
@@ -56,13 +59,22 @@ public class UsersService {
 
     }
 
-    public boolean testPassword(String username, String inputpassword){
+    /**
+     * Takes a username and password. First checks if the username exists, then checks
+     * if the existing username's password matches the password given at sign in.
+     *
+     * @param   username
+     * @param   inputPassword
+     * @return  true if inPass matches the password created at user creation
+     *          false if inPass is not password created at user creation
+     */
+    public boolean testPassword(String username, String inputPassword){
         Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
 
         if(!getUserByUsername.isPresent()){
             throw new IllegalStateException("user does not exist");
         } else{
-            if(inputpassword == getUserByUsername.get().getPassword()){
+            if(inputPassword == getUserByUsername.get().getPassword()){
                 return true;
             } else {
                 return false;

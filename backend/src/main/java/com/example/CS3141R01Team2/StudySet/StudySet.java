@@ -63,6 +63,5 @@ public class StudySet {
     }
     public StudySet() {
     }
-    
-    
+
 }
