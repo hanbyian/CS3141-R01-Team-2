@@ -58,7 +58,7 @@ public class TermsController {
         return termsService.showTerms();
     }
 
-    @PostMapping
+    @PostMapping("/addTerm")
     public void addTerm(@RequestBody Request request) {
         termsService.addTerm(new Terms(request.getParentSet(), request.getTerm(), request.getDefinition()));
     }
