@@ -1,5 +1,6 @@
 package com.example.CS3141R01Team2.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +20,7 @@ public class UsersController {
     }
 
     @GetMapping ("/showusers")//States that the following method is a Get Request
-    public List<Users> showUsers(){
+    public List<ArrayList<?>> showUsers(){
       return userService.showUsers();
     }
 

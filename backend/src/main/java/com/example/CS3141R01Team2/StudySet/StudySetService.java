@@ -1,7 +1,9 @@
 package com.example.CS3141R01Team2.StudySet;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import com.example.CS3141R01Team2.Users.Users;
 import com.example.CS3141R01Team2.Users.UsersRepository;
@@ -32,11 +34,14 @@ public class StudySetService {
      * @param   username        username of user whose study sets are to be returned
      * @return  List<StudySet>  list of study sets tied to a given study set's owner
      */
-    public List<StudySet> showSetsForUser(String username) {
-        Optional<StudySet> outStudySets = studySetRepository.findStudySetsByUser(username);
-        if(outStudySets.isEmpty())
-            throw new IllegalStateException("no sets for this username!");
-        return outStudySets.stream().toList();
+    public List<ArrayList<?>> showSetsForUser(String username) {
+        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+        if (getUserByUsername.isPresent()){
+            List<ArrayList<?>>  listOfSets= studySetRepository.findStudySetsByUser(getUserByUsername.get());
+            return listOfSets;
+        } else{
+            throw new IllegalStateException("user does not exist");
+        }
     }
 
     /**
@@ -51,7 +56,12 @@ public class StudySetService {
         Optional<Users> getUserByUsername = usersRepository.findByUsername(setOwner);
 
         if(getUserByUsername.isPresent()){
+//            StudySet newSet = new StudySet(setName, getUserByUsername.get());
             studySetRepository.save(new StudySet(setName, getUserByUsername.get()));
+//            List<StudySet> userSets = getUserByUsername.get().getStudySets();
+//            userSets.add(newSet);
+//            getUserByUsername.get().setStudySets(userSets);
+//            throw new IllegalStateException("LIST: " + userSets);
         } else{
             throw new IllegalStateException("user " + setOwner + " does not exist!");
         }
