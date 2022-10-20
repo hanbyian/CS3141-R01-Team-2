@@ -85,6 +85,7 @@ public class Users {
     public void setName(String name) {
         this.name = name;
     }
+
     //Default constructor, missing userID since that is automatically generated
     public Users(String username, String password, String email, String name) {
         this.username = username;
