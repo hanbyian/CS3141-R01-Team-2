@@ -62,7 +62,7 @@ public class StudySetController {
 //    public void deleteStudySet(Long setID) {
 //        studySetService.deleteStudySet(setID);
 //    }
-    @PutMapping   // no clue what kind of mapping is needed here
+    @PutMapping
     public void setSetName(StudySet currentSet, String newSetName) {
         studySetService.setSetName(currentSet, newSetName);
     }
