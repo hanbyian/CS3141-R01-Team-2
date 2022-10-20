@@ -29,8 +29,10 @@ public class UsersController {
         userService.createUser(user);
     }
 
-    @GetMapping("/authenticate")
-    public Boolean getPassword(String username, String inputpassword){
+/*    @GetMapping("/authenticate/{username}/{password}")
+    public Boolean getPassword(@PathVariable String username, @PathVariable String inputpassword){
         return userService.testPassword(username, inputpassword);
     }
+    
+ */
 }
