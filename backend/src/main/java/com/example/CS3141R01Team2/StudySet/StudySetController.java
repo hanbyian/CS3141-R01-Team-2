@@ -1,10 +1,12 @@
 package com.example.CS3141R01Team2.StudySet;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.example.CS3141R01Team2.Users.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,8 +66,8 @@ public class StudySetController {
     public void setSetName(StudySet currentSet, String newSetName) {
         studySetService.setSetName(currentSet, newSetName);
     }
-    @GetMapping("/showSetsForUser")
-    public List<StudySet> showSetsForUser(String username) {
+    @GetMapping("/showSetsForUser/{username}")
+    public List<ArrayList<?>> showSetsForUser(@PathVariable String username) {
         return studySetService.showSetsForUser(username);
     }
 

@@ -1,5 +1,6 @@
 package com.example.CS3141R01Team2.Users;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,8 +22,8 @@ public class UsersService {
     }
 
     @GetMapping
-    public List<Users> showUsers(){
-       return usersRepository.findAll(); //returns list of all users
+    public List<ArrayList<?>> showUsers(){
+       return usersRepository.findAllUsers(); //returns list of all users
     }
 
 //    @PostMapping
