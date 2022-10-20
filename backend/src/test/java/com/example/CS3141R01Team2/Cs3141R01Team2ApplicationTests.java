@@ -11,21 +11,32 @@ import java.util.List;
 
 
 @SpringBootTest
-class Cs3141R01Team2ApplicationTests {
+public class Cs3141R01Team2ApplicationTests {
 	@Autowired
-	UsersRepository repository;
+    public UsersRepository repository;
 
 	UsersService service = new UsersService(repository);
 
 	@Test
 	// Test the connection to the entire database
-	void contextLoads() {
+	public void contextLoads() {
 	}
 
-	@Test
-    void testUserAttributes() {
+    // Constructor
+    public void Cs3141R01Team1ApplicationTests() {
+
+    }
+
+    @Test
+    public void testCreateUserObj() {
         // Create a users
-        Users Bob = new Users("bsmith", "Password", "Bob@gmail.com","Bob");
+        Users Bob = new Users();
+
+        // Set all attributes
+        Bob.setUsername("bsmith");
+        Bob.setPassword("Password");
+        Bob.setEmail("Bob@gmail.com");
+        Bob.setName("Bob");
 
         // Get all user attributes
         String username = Bob.getUsername();
@@ -33,14 +44,14 @@ class Cs3141R01Team2ApplicationTests {
         String email = Bob.getEmail();
         String name = Bob.getName();
 
-        assertEquals("Expecting: bsmith","bsmith",username);
-        assertEquals("Expecting: Password","Password",password);
-        assertEquals("Expecting: Bob@gmail.com","Bob@gmail.com",email);
-        assertEquals("Expecting: Bob","Bob",name);
+        assertEquals("bsmith",username);
+        assertEquals("Password",password);
+        assertEquals("Bob@gmail.com",email);
+        assertEquals("Bob",name);
     }
 
     @Test
-    void testUsersAdded() {
+    public void testcreateUser() {
 		// Create a users
 		Users Bob = new Users("bsmith", "Password", "Bob@gmail.com","Bob");
 
@@ -49,6 +60,28 @@ class Cs3141R01Team2ApplicationTests {
 
 		List<Users> usersList = service.showUsers();
 
+        // Confirm Bob was added to the user list
 		assert(usersList.contains(Bob));
+    }
+
+    @Test
+    public void testShowUsers() {
+        // Create a users
+        Users Bob = new Users("bsmith", "Password", "Bob@gmail.com","Bob");
+        Users Alice = new Users("asmith", "P@ssw0rd", "Alice@gmail.com","Alice");
+        Users Eve = new Users("esmith", "passw0rd", "Eve@gmail.com","Eve");
+
+
+        // Add user
+        service.createUser(Bob);
+        service.createUser(Alice);
+        service.createUser(Eve);
+
+        List<Users> usersList = service.showUsers();
+
+        boolean correctList = usersList.contains(Bob) && usersList.contains(Alice) && usersList.contains(Eve);
+
+        // Confirm Bob was added to the userList
+        assert(correctList);
     }
 }
