@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TermsRepository 
     extends JpaRepository<Terms, Long>{
-    
+    // check set is present, check
 }
