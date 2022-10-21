@@ -10,18 +10,26 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
-@Entity(name="studyset")
-@Table(name="studyset")
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ * <p>
+ * StudySet Entity Class holds the actual StudySet Object and generates it as a table in the database
+ * has variables pertaining to the columns of the DB and any relationships corresponding to Entities
+ */
+@Entity(name = "studyset")
+@Table(name = "studyset")
 public class StudySet {
     @Id
     @SequenceGenerator(
-        name = "studySetSequence",
-        sequenceName = "studySetSequence",
-        allocationSize = 1
+            name = "studySetSequence",
+            sequenceName = "studySetSequence",
+            allocationSize = 1
     )
     @GeneratedValue(
-        strategy = GenerationType.SEQUENCE,
-        generator = "studySetSequence"
+            strategy = GenerationType.SEQUENCE,
+            generator = "studySetSequence"
     )
 
     @Column(updatable = false)      // unique?
@@ -32,35 +40,40 @@ public class StudySet {
     @NonNull
     private String setName;
 
-    @ManyToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="setOwner")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "setOwner")
     @NonNull
     private Users setOwner;
 
-    @OneToMany(mappedBy ="parentSet")
+    @OneToMany(mappedBy = "parentSet")
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private Set<Terms> terms;
-    
+
     public String getSetName() {
         return setName;
     }
+
     public void setSetName(String setName) {
         this.setName = setName;
     }
+
     public Users getSetOwner() {
         return setOwner;
     }
+
     public void setSetOwner(Users setOwner) {
         this.setOwner = setOwner;
     }
+
     public Long getSetID() {
         return setID;
     }
-    
+
     public StudySet(String setName, Users setOwner) {
         this.setName = setName;
         this.setOwner = setOwner;
     }
+
     public StudySet() {
     }
 

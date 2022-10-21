@@ -9,12 +9,21 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * TermsController includes all endpoint CRUD mapping for the API for the Terms Entity
+ */
 @RestController
 @RequestMapping(path="api/v1/terms")
 public class TermsController {
 
-    private final TermsService termsService;
-
+    /**
+     * Request Class acts as a wrapper for some of the Controller methods,
+     * used to allow a method to take a json request without need for some inputs
+     */
     public static class Request{
         @JsonProperty
         private String term;
@@ -49,16 +58,28 @@ public class TermsController {
         }
     }
 
+    private final TermsService termsService;
+
     @Autowired
     public TermsController(TermsService termsService) {
         this.termsService = termsService;
     }
 
+    /**
+     * Get Request gets a List of all terms in the system
+     *
+     * @return a List of ArrayLists for each term in our system and the terms name and definition
+     */
     @GetMapping("/getTerms")
     public List<ArrayList<?>> getList(){
         return termsService.showTerms();
     }
 
+    /**
+     * Post Request to create a new term for a given studyset
+     *
+     * @param request the Request Wrapper class containing the specific info we'd need to create a term
+     */
     @PostMapping("/addTerm")
     public void addTerm(@RequestBody Request request) {
         termsService.addTerm(request.getParentSetID(), request.getTerm(), request.getDefinition());

@@ -10,6 +10,13 @@ import com.example.CS3141R01Team2.Users.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * Service method for the StudySet Controller allowing the api to make calls to the repository
+ */
 @Service
 public class StudySetService {
     
@@ -17,6 +24,11 @@ public class StudySetService {
 
     private final UsersRepository usersRepository;
 
+    /**
+     *
+     * @param studySetRepository
+     * @param usersRepository
+     */
     @Autowired
     public StudySetService(StudySetRepository studySetRepository, UsersRepository usersRepository) {
         this.studySetRepository = studySetRepository;
@@ -56,21 +68,18 @@ public class StudySetService {
         Optional<Users> getUserByUsername = usersRepository.findByUsername(setOwner);
 
         if(getUserByUsername.isPresent()){
-//            StudySet newSet = new StudySet(setName, getUserByUsername.get());
             studySetRepository.save(new StudySet(setName, getUserByUsername.get()));
-//            List<StudySet> userSets = getUserByUsername.get().getStudySets();
-//            userSets.add(newSet);
-//            getUserByUsername.get().setStudySets(userSets);
-//            throw new IllegalStateException("LIST: " + userSets);
         } else{
             throw new IllegalStateException("user " + setOwner + " does not exist!");
         }
 
     }
+
 //    public void deleteStudySet(Long setID) {  // does deleteStudySet need a findStudySet method to work?
 //        studySetRepository.delete(studySetRepository.findById(setID));
 //    }
-    public void setSetName(StudySet currentSet, String newSetName) {
-        currentSet.setSetName(newSetName);
-    }
+
+//    public void setSetName(StudySet currentSet, String newSetName) {
+//        currentSet.setSetName(newSetName);
+//    }
 }

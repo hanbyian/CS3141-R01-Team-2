@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * Service method for the Users Controller allowing the api to make calls to the repository
+ */
 @Service
 public class UsersService {
 
@@ -21,7 +28,12 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping
+    /**
+     * method to return a List of all users in the database and their registration information
+     *
+     * @return List of ArrayList of each users information each ArrayList containing
+     * a users ID, username, password, email, and name
+     */
     public List<ArrayList<?>> showUsers(){
        return usersRepository.findAllUsers(); //returns list of all users
     }
@@ -37,6 +49,7 @@ public class UsersService {
 //        }
 //        return false;
 //    }
+
     /**
      * Take in a user entity and checks if the username and email are both unique.
      * Once checked, a user account is saved in usersRepository which allows a user to create
@@ -60,27 +73,27 @@ public class UsersService {
 
     }
 
-    /**
-     * Takes a username and password. First checks if the username exists, then checks
-     * if the existing username's password matches the password given at sign in.
-     *
-     * @param   username
-     * @param   inputPassword
-     * @return  true if inPass matches the password created at user creation
-     *          false if inPass is not password created at user creation
-     */
-    public boolean testPassword(String username, String inputPassword){
-        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
-
-        if(getUserByUsername.isPresent()){
-            throw new IllegalStateException("user does not exist");
-        } else{
-            if(inputPassword == getUserByUsername.get().getPassword()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+//    /**
+//     * Takes a username and password. First checks if the username exists, then checks
+//     * if the existing username's password matches the password given at sign in.
+//     *
+//     * @param   username
+//     * @param   inputPassword
+//     * @return  true if inPass matches the password created at user creation
+//     *          false if inPass is not password created at user creation
+//     */
+//    public boolean testPassword(String username, String inputPassword){
+//        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+//
+//        if(getUserByUsername.isPresent()){
+//            throw new IllegalStateException("user does not exist");
+//        } else{
+//            if(inputPassword == getUserByUsername.get().getPassword()){
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//    }
 
 }
