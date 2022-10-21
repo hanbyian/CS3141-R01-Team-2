@@ -1,10 +1,12 @@
 package com.example.CS3141R01Team2.StudySet;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.example.CS3141R01Team2.Users.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,7 +50,7 @@ public class StudySetController {
     }
 
     @GetMapping("/showSets")
-    public List<StudySet> showSets(){
+    public List<ArrayList<?>> showSets(){
         return studySetService.showSets();
     }
 
@@ -60,12 +62,12 @@ public class StudySetController {
 //    public void deleteStudySet(Long setID) {
 //        studySetService.deleteStudySet(setID);
 //    }
-    @PutMapping   // no clue what kind of mapping is needed here
-    public void setSetName(StudySet currentSet, String newSetName) {
-        studySetService.setSetName(currentSet, newSetName);
-    }
-    @GetMapping("/showSetsForUser")
-    public List<StudySet> showSetsForUser(String username) {
+//    @PutMapping
+//    public void setSetName(StudySet currentSet, String newSetName) {
+//        studySetService.setSetName(currentSet, newSetName);
+//    }
+    @GetMapping("/showSetsForUser/{username}")
+    public List<ArrayList<?>> showSetsForUser(@PathVariable String username) {
         return studySetService.showSetsForUser(username);
     }
 

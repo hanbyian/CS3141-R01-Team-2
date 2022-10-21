@@ -5,12 +5,17 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface StudySetRepository 
     extends JpaRepository<StudySet, Long> {
 
-    @Query("SELECT u FROM studyset u WHERE u.setOwner = ?1")
-    public Optional<StudySet> findStudySetsByUser(String username);
+    @Query("SELECT u.setID, u.setName FROM studyset u WHERE u.setOwner = ?1")
+    public List<ArrayList<?>> findStudySetsByUser(Users users );
+
+    @Query("SELECT u.setID, u.setName FROM studyset u")
+    public List<ArrayList<?>> showAllSets();
 }
