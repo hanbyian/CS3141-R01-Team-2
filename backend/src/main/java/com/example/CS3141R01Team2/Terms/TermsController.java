@@ -53,7 +53,7 @@ public class TermsController {
         this.termsService = termsService;
     }
 
-    @GetMapping
+    @GetMapping("/getTerms")
     public List<Terms> getList(){
         return termsService.showTerms();
     }
