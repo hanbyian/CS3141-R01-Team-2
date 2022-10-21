@@ -4,6 +4,7 @@ import com.example.CS3141R01Team2.Users.*;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -22,11 +23,7 @@ public class Cs3141R01Team2ApplicationTests {
 	public void contextLoads() {
 	}
 
-    // Constructor
-    public void Cs3141R01Team1ApplicationTests() {
-
-    }
-
+    /* Test UsersService Class methods*/
     @Test
     public void testCreateUserObj() {
         // Create a users
@@ -66,7 +63,7 @@ public class Cs3141R01Team2ApplicationTests {
 
     @Test
     public void testShowUsers() {
-        // Create a users
+        // Create users
         Users Bob = new Users("bsmith", "Password", "Bob@gmail.com","Bob");
         Users Alice = new Users("asmith", "P@ssw0rd", "Alice@gmail.com","Alice");
         Users Eve = new Users("esmith", "passw0rd", "Eve@gmail.com","Eve");
@@ -83,5 +80,17 @@ public class Cs3141R01Team2ApplicationTests {
 
         // Confirm Bob was added to the userList
         assert(correctList);
+    }
+
+    @Test
+    public void testTestPassword() {
+        // Create a user
+        Users Bob = new Users("bsmith", "Password", "Bob@gmail.com","Bob");
+
+        // Test user's password
+        boolean result = service.testPassword(Bob.getUsername(),Bob.getPassword());
+
+        // Confirm it is true
+        assert(result);
     }
 }
