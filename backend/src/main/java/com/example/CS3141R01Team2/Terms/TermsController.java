@@ -1,5 +1,6 @@
 package com.example.CS3141R01Team2.Terms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.CS3141R01Team2.StudySet.StudySet;
@@ -54,7 +55,7 @@ public class TermsController {
     }
 
     @GetMapping
-    public List<Terms> getList(){
+    public List<ArrayList<?>> getList(){
         return termsService.showTerms();
     }
 

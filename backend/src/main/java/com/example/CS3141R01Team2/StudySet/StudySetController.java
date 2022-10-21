@@ -50,7 +50,7 @@ public class StudySetController {
     }
 
     @GetMapping("/showSets")
-    public List<StudySet> showSets(){
+    public List<ArrayList<?>> showSets(){
         return studySetService.showSets();
     }
 
@@ -62,10 +62,10 @@ public class StudySetController {
 //    public void deleteStudySet(Long setID) {
 //        studySetService.deleteStudySet(setID);
 //    }
-    @PutMapping
-    public void setSetName(StudySet currentSet, String newSetName) {
-        studySetService.setSetName(currentSet, newSetName);
-    }
+//    @PutMapping
+//    public void setSetName(StudySet currentSet, String newSetName) {
+//        studySetService.setSetName(currentSet, newSetName);
+//    }
     @GetMapping("/showSetsForUser/{username}")
     public List<ArrayList<?>> showSetsForUser(@PathVariable String username) {
         return studySetService.showSetsForUser(username);

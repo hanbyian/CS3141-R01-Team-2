@@ -27,11 +27,11 @@ public class Terms {
     @NonNull
     private StudySet parentSet;
 
-    @Column(nullable=false)
+    @Column(nullable=false,  columnDefinition = "TEXT")
     @NonNull
     private String term;
 
-    @Column(nullable=false)
+    @Column(nullable=false,  columnDefinition = "TEXT")
     @NonNull
     private String definition;
     
