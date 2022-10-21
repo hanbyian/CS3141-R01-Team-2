@@ -20,13 +20,13 @@ public class TermsController {
         @JsonProperty
         private String definition;
         @JsonProperty
-        private StudySet parentSet;
+        private Long parentSetID;
 
-        public StudySet getParentSet() {
-            return parentSet;
+        public Long getParentSetID() {
+            return parentSetID;
         }
-        public void setParentSet(StudySet parentSet) {
-            this.parentSet = parentSet;
+        public void setParentSet(Long parentSetID) {
+            this.parentSetID = parentSetID;
         }
         public String getTerm() {
             return term;
@@ -41,8 +41,8 @@ public class TermsController {
             this.definition = definition;
         }
 
-        public Request(StudySet parentSet, String term, String definition) {
-            this.parentSet = parentSet;
+        public Request(Long parentSetID, String term, String definition) {
+            this.parentSetID = parentSetID;
             this.term = term;
             this.definition = definition;
         }
@@ -60,6 +60,6 @@ public class TermsController {
 
     @PostMapping("/addTerm")
     public void addTerm(@RequestBody Request request) {
-        termsService.addTerm(new Terms(request.getParentSet(), request.getTerm(), request.getDefinition()));
+        termsService.addTerm(request.getParentSetID(), request.getTerm(), request.getDefinition());
     }
 }
