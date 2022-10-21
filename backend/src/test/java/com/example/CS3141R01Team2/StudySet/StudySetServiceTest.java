@@ -185,45 +185,5 @@ class StudySetServiceTest {
         assertThrows(IllegalStateException.class, () -> studySetService.createStudySet("Set Name", "Set Owner"));
         verify(usersRepository).findByUsername((String) any());
     }
-
-    /**
-     * Method under test: {@link StudySetService#setSetName(StudySet, String)}
-     */
-    @Test
-    void testSetSetName() {
-        Users users = new Users();
-        users.setEmail("jane.doe@example.org");
-        users.setName("Name");
-        users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
-        users.setUsername("janedoe");
-
-        StudySet studySet = new StudySet();
-        studySet.setSetName("Set Name");
-        studySet.setSetOwner(users);
-        studySetService.setSetName(studySet, "New Set Name");
-        assertEquals("New Set Name", studySet.getSetName());
-    }
-
-    /**
-     * Method under test: {@link StudySetService#setSetName(StudySet, String)}
-     */
-    @Test
-    void testSetSetName2() {
-        Users users = new Users();
-        users.setEmail("jane.doe@example.org");
-        users.setName("Name");
-        users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
-        users.setUsername("janedoe");
-        StudySet studySet = mock(StudySet.class);
-        doNothing().when(studySet).setSetName((String) any());
-        doNothing().when(studySet).setSetOwner((Users) any());
-        studySet.setSetName("Set Name");
-        studySet.setSetOwner(users);
-        studySetService.setSetName(studySet, "New Set Name");
-        verify(studySet, atLeast(1)).setSetName((String) any());
-        verify(studySet).setSetOwner((Users) any());
-    }
 }
 

@@ -10,6 +10,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * Service method for the Users Controller allowing the api to make calls to the repository
+ */
 @Service
 public class UsersService {
 
@@ -21,7 +28,12 @@ public class UsersService {
         this.usersRepository = usersRepository;
     }
 
-    @GetMapping
+    /**
+     * method to return a List of all users in the database and their registration information
+     *
+     * @return List of ArrayList of each users information each ArrayList containing
+     * a users ID, username, password, email, and name
+     */
     public List<ArrayList<?>> showUsers(){
        return usersRepository.findAllUsers(); //returns list of all users
     }
@@ -37,6 +49,7 @@ public class UsersService {
 //        }
 //        return false;
 //    }
+
     /**
      * Take in a user entity and checks if the username and email are both unique.
      * Once checked, a user account is saved in usersRepository which allows a user to create

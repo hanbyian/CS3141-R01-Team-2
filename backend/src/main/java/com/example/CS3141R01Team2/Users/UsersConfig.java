@@ -6,6 +6,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * @deprecated
+ *
+ * Initial Configuration file for the Users table used for some testing features during initial
+ * Development
+ */
 @Configuration
 public class UsersConfig {
     

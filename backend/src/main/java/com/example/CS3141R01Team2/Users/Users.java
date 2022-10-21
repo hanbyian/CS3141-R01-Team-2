@@ -9,6 +9,14 @@ import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 
+/**
+ * @author wmisip
+ * @author eljones
+ * @author mykelly
+ *
+ * Users Entity Class holds the actual Users Object and generates it as a table in the database
+ * has variables pertaining to the columns of the DB and any relationships corresponding to Entities
+ */
 @Entity(name="users") //Entity tag used for HQL (hibernate queries)
 @Table(
     name="users",
@@ -65,7 +73,6 @@ public class Users {
     public Long getUserID() {
         return userID;
     }
-
     public String getUsername() {
         return username;
     }
@@ -90,6 +97,7 @@ public class Users {
     public void setName(String name) {
         this.name = name;
     }
+
     //Default constructor, missing userID since that is automatically generated
     public Users(String username, String password, String email, String name) {
         this.username = username;
