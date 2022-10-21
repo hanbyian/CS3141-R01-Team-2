@@ -25,7 +25,8 @@ public class UsersConfig {
             "ijhanby@gmail.com",
             "Ian"
             );
-            
+
+
             repository.saveAll(         //saves users
                 List.of(wil, ian)
             );

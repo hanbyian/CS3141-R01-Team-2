@@ -1,5 +1,6 @@
 package com.example.CS3141R01Team2.Terms;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,8 +23,8 @@ public class TermsService {
         this.studySetRepository = studySetRepository;
     }
 
-    public List<Terms> showTerms(){
-        return termsRepository.findAll();
+    public List<ArrayList<?>> showTerms(){
+        return termsRepository.showAllTerms();
     }
 
     public void addTerm(Long studySetID, String term, String definition) {

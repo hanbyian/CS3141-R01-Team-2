@@ -1,5 +1,6 @@
 package com.example.CS3141R01Team2.Terms;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.CS3141R01Team2.StudySet.StudySet;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path="api/v1/terms")
 public class TermsController {
-    
+
     private final TermsService termsService;
 
     public static class Request{
@@ -53,8 +54,8 @@ public class TermsController {
         this.termsService = termsService;
     }
 
-    @GetMapping("/getTerms")
-    public List<Terms> getList(){
+    @GetMapping
+    public List<ArrayList<?>> getList(){
         return termsService.showTerms();
     }
 

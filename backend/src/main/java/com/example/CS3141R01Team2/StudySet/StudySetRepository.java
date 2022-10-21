@@ -15,4 +15,7 @@ public interface StudySetRepository
 
     @Query("SELECT u.setID, u.setName FROM studyset u WHERE u.setOwner = ?1")
     public List<ArrayList<?>> findStudySetsByUser(Users users );
+
+    @Query("SELECT u.setID, u.setName FROM studyset u")
+    public List<ArrayList<?>> showAllSets();
 }

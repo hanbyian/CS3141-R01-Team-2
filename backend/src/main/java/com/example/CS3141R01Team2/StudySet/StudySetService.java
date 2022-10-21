@@ -23,8 +23,8 @@ public class StudySetService {
         this.usersRepository = usersRepository;
     }
 
-    public List<StudySet> showSets() {
-        return studySetRepository.findAll();
+    public List<ArrayList<?>> showSets() {
+        return studySetRepository.showAllSets();
     }
 
     /**
