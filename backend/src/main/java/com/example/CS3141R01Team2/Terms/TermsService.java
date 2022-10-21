@@ -21,6 +21,7 @@ public class TermsService {
     }
 
     public void addTerm(Terms term) {
+
         termsRepository.save(term);
     }
     public void deleteTerm(Terms delTerm) {
