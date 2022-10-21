@@ -60,27 +60,27 @@ public class UsersService {
 
     }
 
-    /**
-     * Takes a username and password. First checks if the username exists, then checks
-     * if the existing username's password matches the password given at sign in.
-     *
-     * @param   username
-     * @param   inputPassword
-     * @return  true if inPass matches the password created at user creation
-     *          false if inPass is not password created at user creation
-     */
-    public boolean testPassword(String username, String inputPassword){
-        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
-
-        if(getUserByUsername.isPresent()){
-            throw new IllegalStateException("user does not exist");
-        } else{
-            if(inputPassword == getUserByUsername.get().getPassword()){
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
+//    /**
+//     * Takes a username and password. First checks if the username exists, then checks
+//     * if the existing username's password matches the password given at sign in.
+//     *
+//     * @param   username
+//     * @param   inputPassword
+//     * @return  true if inPass matches the password created at user creation
+//     *          false if inPass is not password created at user creation
+//     */
+//    public boolean testPassword(String username, String inputPassword){
+//        Optional<Users> getUserByUsername = usersRepository.findByUsername(username);
+//
+//        if(getUserByUsername.isPresent()){
+//            throw new IllegalStateException("user does not exist");
+//        } else{
+//            if(inputPassword == getUserByUsername.get().getPassword()){
+//                return true;
+//            } else {
+//                return false;
+//            }
+//        }
+//    }
 
 }
