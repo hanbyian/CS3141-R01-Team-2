@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
  * TermsController includes all endpoint CRUD mapping for the API for the Terms Entity
  */
 @RestController
-@RequestMapping(path="api/v1/terms")
+@RequestMapping(path="/terms")
 public class TermsController {
 
     /**
