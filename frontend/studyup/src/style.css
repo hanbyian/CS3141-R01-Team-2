@@ -1,0 +1,44 @@
+.studyupheader{
+    color: black;
+    font-size: 500%;
+    text-align: center;
+    font-variant: small-caps;
+}
+.studyupblizz{
+    text-align: center;
+    font-variant: small-caps;
+}
+
+.smallcaps{
+    font-variant: small-caps;
+}
+
+.alignc{
+    text-align: center;
+    align-items: center;
+}
+
+.inputtext{
+    box-sizing: border-box;
+    margin: 8px 0;
+    padding: 10px 15px;
+    background-color: black;
+    color:white;
+}
+
+.button1{
+    background-color: gray;
+    border: 5px black;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 15px;
+    transition-duration: .5s;
+    margin:2px;
+}
+
+.button1:hover{
+    background-color: rgba(0, 0, 0, 0.199);
+    color: black;
+}
