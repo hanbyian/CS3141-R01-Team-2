@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import root from './index.js';
 
+const axios = require('axios');
 const emptySampleData = {};
 const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 export const flashcards = (
@@ -60,18 +61,22 @@ export class LoginPage extends React.Component{
 export class HomePage extends React.Component{
     constructor(props){
         super(props);
-        this.state = {viewingSetKey:this.props.setKey, viewingSetValue:this.props.setValue, allSets:this.props.sets, isCreating:false, newSet:[], newSetCount:0};
+        this.state = {viewingSetKey:this.props.setKey, viewingSetValue:this.props.setValue, allSets:this.props.sets, isCreating:false, viewState:0, newSet:[], newSetCount:0};
         this.handleCreating = this.handleCreating.bind(this);
         this.handleViewingSet = this.handleViewingSet.bind(this);
         this.addTerm = this.addTerm.bind(this);
         this.pushSet=this.pushSet.bind(this);
+        this.handleStudyingFlashcards = this.handleStudyingFlashcards.bind(this);
     }
     handleCreating(){
-        this.setState({isCreating:true});
+        this.setState({viewState:1});
     }
     handleViewingSet(newViewingKey, newViewingValue){
-        this.setState({viewingSetKey:newViewingKey, viewingSetValue:newViewingValue, isCreating:false});
+        this.setState({viewingSetKey:newViewingKey, viewingSetValue:newViewingValue, viewState:0});
         
+    }
+    handleStudyingFlashcards(){
+        this.setState({viewState:2});
     }
     addTerm(){
         let nextTerm = (
@@ -93,13 +98,12 @@ export class HomePage extends React.Component{
         }
         let setName = document.getElementById("newSetName").value.toString();
         let emptySet = {};emptySet[setName.toString()]=currentSet;
-        //this.setState({allSets:emptySet});
         this.state.allSets[setName]=currentSet;
         this.setState({newSetCount:this.state.newSetCount});
     }
     render() {
         let setView;
-        if(this.state.isCreating){
+        if(this.state.viewState == 1){/* viewState=1 is set creation mode*/
             let firstTerm = (
             <div className="set element" id={this.state.newSet.length} >
                 <input placeholder="term" id={this.state.newSet.length+"term"}></input>
@@ -116,14 +120,19 @@ export class HomePage extends React.Component{
                 <button onClick={this.addTerm}>+ Add new term</button>
                 <button onClick={this.pushSet}>Finish Making Set</button>
             </div>);
-        }else{
+        }else if(this.state.viewState==0){/* viewState=0 is viewing a specific set */
             //setView for the currently selected set(stored in state) which shows the terms and has study button
             setView=
             (<div>
                 <h3>{this.state.viewingSetKey}</h3>
                 <ul>{Object.entries(this.state.viewingSetValue).map(([key,value]) => (<li>{key} -- {value}</li>))}</ul>
-                <button>Study This Set</button>
+                <button onClick={this.handleStudyingFlashcards}>Study This Set</button>
             </div>);
+        } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
+            //do da flashcard ting
+            setView=(<div>
+                <p>lol you thought</p>
+            </div>)
         }
         return (
             <div>
