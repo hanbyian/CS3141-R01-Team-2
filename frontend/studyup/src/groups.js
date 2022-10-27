@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import root from './index.js';
+import style from './style.css';
 
 const emptySampleData = {};
 const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
@@ -27,22 +28,22 @@ export class LoginPage extends React.Component{
     }
     render(){
         let login = (
-        <div className="signInForm">
+        <div className="signInForm alignc"><br></br>
             <form onSubmit={this.confirmUser}>
-                <input type="text" placeholder="username"></input>
-                <input type="text" placeholder="password"></input>
-                <button type="submit">Log In</button>
+                <input className="inputtext" type="text" placeholder="username"></input>
+                <input className="inputtext" type="text" placeholder="password"></input><br></br>
+                <button className="smallcaps button1" type="submit">Log In</button>
             </form>
-            <button onClick={this.handleLoginSignup}>Sign Up</button>
+            <button className="smallcaps button1" onClick={this.handleLoginSignup}>Sign Up</button>
         </div>);
         let signup = (
-        <div className="loginForm">
+        <div className="loginForm alignc"><br></br>
             <form onSubmit={this.registerUser}>
-                <input type="text" placeholder="select a username"></input>
-                <input type="text" placeholder="select a password"></input>
-                <button type="submit">Sign Up</button>
+                <input className="inputtext" type="text" placeholder="select a username"></input>
+                <input className="inputtext" type="text" placeholder="select a password"></input><br></br>
+                <button className="smallcaps button1" type="submit">Sign Up</button>
             </form>
-            <button onClick={this.handleLoginSignup}>Log In</button>
+            <button className="smallcaps button1" onClick={this.handleLoginSignup}>Log In</button>
         </div>);
         let showing = <div></div>;
         if(this.state.showLogin){
@@ -113,32 +114,33 @@ export class HomePage extends React.Component{
                 <div className="memberList" id="createSet">
                     {this.state.newSet}
                 </div>
-                <button onClick={this.addTerm}>+ Add new term</button>
-                <button onClick={this.pushSet}>Finish Making Set</button>
+                <button className="smallcaps button1" onClick={this.addTerm}>+ Add new term</button>
+                <button className="smallcaps button1" onClick={this.pushSet}>Finish Making Set</button>
             </div>);
         }else{
             //setView for the currently selected set(stored in state) which shows the terms and has study button
             setView=
             (<div>
-                <h3>{this.state.viewingSetKey}</h3>
-                <ul>{Object.entries(this.state.viewingSetValue).map(([key,value]) => (<li>{key} -- {value}</li>))}</ul>
-                <button>Study This Set</button>
+                <h3 className="smallcaps">{this.state.viewingSetKey}</h3>
+                <ul className="smallcaps">{Object.entries(this.state.viewingSetValue).map(([key,value]) => (<li>{key} -- {value}</li>))}</ul>
+                <button className="smallcaps button1">Study This Set</button>
             </div>);
         }
         return (
             <div>
             <div className="header">
-                <h1>StudyUp</h1>
-                <h2>Sponsored by Blizzard T. Husky</h2>
+                <h1 className="studyupheader">StudyUp</h1>
+                <h2 className="studyupblizz">Sponsored by Blizzard T. Husky</h2>
+                <hr></hr>
             </div>
             {setView}
             <div>
-                <h3>My Sets</h3>
-                <ul>
-                    {this.state.allSets.length==0? <p>you have no sets</p>: Object.entries(this.state.allSets).map(([key,value]) => (<li><button onClick = {(e) => this.handleViewingSet(key,value,e)}>{key}</button></li>))}
+                <h3 className="smallcaps">My Sets</h3>
+                <ul className="smallcaps">
+                    {this.state.allSets.length==0? <p className="smallcaps">you have no sets</p>: Object.entries(this.state.allSets).map(([key,value]) => (<li><button className="button1" onClick = {(e) => this.handleViewingSet(key,value,e)}>{key}</button></li>))}
                 </ul>
-                <button onClick={this.handleCreating}>+ Create Set</button>
-                <p>Select a set to view it and study</p>
+                <button className="smallcaps button1" onClick={this.handleCreating}>+ Create Set</button>
+                <p className="smallcaps">Select a set to view it and study</p>
             </div>
             </div>
         );
