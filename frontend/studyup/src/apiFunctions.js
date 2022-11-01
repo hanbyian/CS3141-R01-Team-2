@@ -38,9 +38,12 @@ export function showSetsData(){
     fetch("http://54.211.204.247:8080/StudyUp2/studyset/showSets").then(response=>response.json()).then(data=>  tempData = data);
     return tempData;
 }
-export function ShowUsersData(){
+export async function ShowUsersData(){
     let tempData;
-    fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>tempData = data);
+    const cringe = (data) =>{
+      tempData = data;
+    }
+    await fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>cringe(data));
     return tempData;
 
 }
