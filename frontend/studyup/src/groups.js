@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import root from './index.js';
+//import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "./apiFunctions";
 
-const axios = require('axios');
 const emptySampleData = {};
 const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 export const flashcards = (
@@ -20,8 +20,23 @@ export class LoginPage extends React.Component{
     handleLoginSignup(){
         this.setState({showLogin:(!this.state.showLogin)});
     }
-    confirmUser(){
-        root.render(<HomePage setKey={Object.entries(sampleData.sets)[0][0]} setValue={Object.entries(sampleData.sets)[0][1]} sets={sampleData.sets}/>);
+    async confirmUser(){
+        let tempData = 0;
+        let userID = document.getElementById("loginUsername").value;
+        let passID = document.getElementById("loginPassword").value;
+        console.log(passID);
+        console.log(userID);
+        try{
+            fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.JSON()).then(data=>tempData=data);
+            console.log(tempData);
+            for(let i = 0;i<tempData.length;i++){
+                if(userID===tempData[i][1] && passID===tempData[i][2])root.render(<HomePage username={userID}/>);
+            }
+        }
+        catch(e){
+            console.log(e);
+            console.log("failed");
+        }
     }
     registerUser(){
 
@@ -30,8 +45,8 @@ export class LoginPage extends React.Component{
         let login = (
         <div className="signInForm">
             <form onSubmit={this.confirmUser}>
-                <input type="text" placeholder="username"></input>
-                <input type="text" placeholder="password"></input>
+                <input type="text" placeholder="username" id="loginUsername"></input>
+                <input type="text" placeholder="password" id ="loginPassword"></input>
                 <button type="submit">Log In</button>
             </form>
             <button onClick={this.handleLoginSignup}>Sign Up</button>
@@ -61,7 +76,16 @@ export class LoginPage extends React.Component{
 export class HomePage extends React.Component{
     constructor(props){
         super(props);
-        this.state = {viewingSetKey:this.props.setKey, viewingSetValue:this.props.setValue, allSets:this.props.sets, isCreating:false, viewState:0, newSet:[], newSetCount:0};
+        this.state = {
+            username:this.props.username,
+            viewingSet:0,
+            viewState:0,
+            newSet:[],
+            newSetCount:0
+        };
+        let userSets = allSetsForUser(this.state.username);
+        this.setState({allSets:userSets});
+
         this.handleCreating = this.handleCreating.bind(this);
         this.handleViewingSet = this.handleViewingSet.bind(this);
         this.addTerm = this.addTerm.bind(this);
@@ -71,8 +95,8 @@ export class HomePage extends React.Component{
     handleCreating(){
         this.setState({viewState:1});
     }
-    handleViewingSet(newViewingKey, newViewingValue){
-        this.setState({viewingSetKey:newViewingKey, viewingSetValue:newViewingValue, viewState:0});
+    handleViewingSet(newViewingSet){
+        this.setState({viewingSet:newViewingSet});
         
     }
     handleStudyingFlashcards(){
@@ -124,10 +148,10 @@ export class HomePage extends React.Component{
             //setView for the currently selected set(stored in state) which shows the terms and has study button
             setView=
             (<div>
-                <h3>{this.state.viewingSetKey}</h3>
-                <ul>{Object.entries(this.state.viewingSetValue).map(([key,value]) => (<li>{key} -- {value}</li>))}</ul>
+                <h3>{this.state.viewingSet}</h3>
+                <ul></ul>
                 <button onClick={this.handleStudyingFlashcards}>Study This Set</button>
-            </div>);
+            </div>);//need to map list here
         } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
             //do da flashcard ting
             setView=(<div>
@@ -144,7 +168,7 @@ export class HomePage extends React.Component{
             <div>
                 <h3>My Sets</h3>
                 <ul>
-                    {this.state.allSets.length==0? <p>you have no sets</p>: Object.entries(this.state.allSets).map(([key,value]) => (<li><button onClick = {(e) => this.handleViewingSet(key,value,e)}>{key}</button></li>))}
+                    {this.state.allSets.length==0? <p>you have no sets</p>: this.state.allSets.map(e => (<li key={e[0]}><button onClick = {ee => this.handleViewingSet(e[0])}>{e[1]}</button></li>))}
                 </ul>
                 <button onClick={this.handleCreating}>+ Create Set</button>
                 <p>Select a set to view it and study</p>
@@ -154,3 +178,123 @@ export class HomePage extends React.Component{
     }
 }
 
+/*
+order matters on params of the json given to post method
+URLs
+baseURL - http://54.211.204.247:8080/StudyUp2
+
+terms URL - http://54.211.204.247:8080/StudyUp2/terms
+user URL - http://54.211.204.247:8080/StudyUp2/users
+set URL - http://54.211.204.247:8080/StudyUp2/studyset
+
+GET allSetsForUser - http://54.211.204.247:8080/StudyUp2/studyset/showSetsForUser/{username}
+GET getTerms - http://54.211.204.247:8080/StudyUp2/terms/getTerms
+GET showSets - http://54.211.204.247:8080/StudyUp2/studyset/showSets
+GET showusers - http://54.211.204.247:8080/StudyUp2/users/showusers
+
+POST createStudySet - http://54.211.204.247:8080/StudyUp2/studyset/createStudySet
+POST createUser - http://54.211.204.247:8080/StudyUp2/users/createUser
+POST addTerm - http://54.211.204.247:8080/StudyUp2/terms/addTerm
+*/
+/*
+functions needed:
+on signup call createUser(u,p,e,n);
+on login - 
+
+*/
+export function allSetsForUser(U){
+    let tempData;
+    fetch("http://54.211.204.247:8080/StudyUp2/studyset/showSetsForUser/"+U).then(response =>response.json()).then(data=>tempData=data);
+    return tempData;
+  }
+  export function getTermsData(){
+      let tempData;
+      fetch("http://54.211.204.247:8080/StudyUp2/terms/getTerms").then(response=>response.json()).then(data=> tempData = data);
+      return tempData;
+  }
+  export function showSetsData(){
+      let tempData;
+      fetch("http://54.211.204.247:8080/StudyUp2/studyset/showSets").then(response=>response.json()).then(data=>  tempData = data);
+      return tempData;
+  }
+  export function ShowUsersData(){
+      let tempData;
+      fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>tempData = data);
+      return tempData;
+  
+  }
+  export function confirmUserAPI(U,P){
+    let tempData = 
+      fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
+      {
+          console.log(e[1] + ":" + e[2]);
+          if(U==e[1] && P==e[2])return true;
+    }));
+      console.log(tempData);
+    return false;
+  }
+  export function createStudySet( SN, SO){
+      try{
+          let postData;
+          postData.setName = SN;
+          postData.setOwner = SO;
+          //let data = {"setName":"mySet", "setOwner":"ijhanby"};setOwner has to be a username in users dataset
+      
+          fetch("http://54.211.204.247:8080/StudyUp2/studyset/createStudySet", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(postData)
+          }).then(res => {
+            console.log("Request complete! response:", res);
+          });
+        }
+        catch(e){
+          console.log(e);
+          console.log("creating set did not work for setName:" + SN);
+        }
+  }
+  export function addTerm(SSID, T, D){
+      try{
+          //post empty set, then get sets to get setID, then use setID and add each term(individually or at once)
+          let postData;
+          postData.term = T;
+          postData.definition = D;
+          postData.parentSetID = SSID;
+          //let termsData = {term:"ethan", definition:"jones",studySetID:1};
+      
+          fetch("http://54.211.204.247:8080/StudyUp2/terms/addTerm", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'}, 
+            body: JSON.stringify(postData)
+          }).then(res => {
+            console.log("Request complete! response:", res);
+          });
+        }
+        catch(e){
+          console.log(e);
+          console.log("add term did not work for setID:"+SSID + "and term:"+T);
+        }
+  }
+    
+  export function createUser(U, P, E, N){
+      try{
+          let postData;
+          postData.username = U;
+          postData.password = P;
+          postData.email = E;
+          postData.name = N;
+          //let userData = {username: 'ighanby', password: 'test', email: 'ighanby@mtu.edu', name: 'ian yerd'};
+  
+          fetch("http://54.211.204.247:8080/StudyUp2/users/createUser", {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'}, 
+          body: JSON.stringify(postData)
+          }).then(res => {
+          console.log("Request complete! response:", res);
+          });
+      }
+      catch(e){
+          console.log(e);
+          console.log("create function did not work for username:"+U);
+      }
+  }
