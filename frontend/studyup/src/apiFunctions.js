@@ -23,19 +23,19 @@ on signup call createUser(u,p,e,n);
 on login - 
 
 */
-export function allSetsForUser(U){
+export async function allSetsForUser(U){
   let tempData;
-  fetch("http://54.211.204.247:8080/StudyUp2/studyset/showSetsForUser/"+U).then(response =>response.json()).then(data=>tempData=data);
+  await fetch("http://54.211.204.247:8181/StudyUp2/studyset/showSetsForUser/"+U).then(response =>response.json()).then(data=>tempData=data);
   return tempData;
 }
-export function getTermsData(){
+export async function getTermsData(){
     let tempData;
-    fetch("http://54.211.204.247:8080/StudyUp2/terms/getTerms").then(response=>response.json()).then(data=> tempData = data);
+    await fetch("http://54.211.204.247:8181/StudyUp2/terms/getTerms").then(response=>response.json()).then(data=> tempData = data);
     return tempData;
 }
-export function showSetsData(){
+export async function showSetsData(){
     let tempData;
-    fetch("http://54.211.204.247:8080/StudyUp2/studyset/showSets").then(response=>response.json()).then(data=>  tempData = data);
+    await fetch("http://54.211.204.247:8181/StudyUp2/studyset/showSets").then(response=>response.json()).then(data=>  tempData = data);
     return tempData;
 }
 export async function ShowUsersData(){
@@ -43,13 +43,13 @@ export async function ShowUsersData(){
     const cringe = (data) =>{
       tempData = data;
     }
-    await fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>cringe(data));
+    await fetch("http://54.211.204.247:8181/StudyUp2/users/showusers").then(response=>response.json()).then(data=>cringe(data));
     return tempData;
 
 }
-export function confirmUserAPI(U,P){
+export async function confirmUserAPI(U,P){
   let tempData;
-    fetch("http://54.211.204.247:8080/StudyUp2/users/showusers").then(response=>response.json()).then(data=>tempData = data);
+  await fetch("http://54.211.204.247:8181/StudyUp2/users/showusers").then(response=>response.json()).then(data=>tempData = data);
     tempData.map(e=>
       {
           console.log(e[1] + ":" + e[2]);
@@ -57,14 +57,14 @@ export function confirmUserAPI(U,P){
     });
   return false;
 }
-export function createStudySet( SN, SO){
+export async function createStudySet( SN, SO){
     try{
         let postData;
         postData.setName = SN;
         postData.setOwner = SO;
         //let data = {"setName":"mySet", "setOwner":"ijhanby"};setOwner has to be a username in users dataset
         //mode:no-cors,
-        fetch("http://54.211.204.247:8080/StudyUp2/studyset/createStudySet", {
+        await fetch("http://54.211.204.247:8181/StudyUp2/studyset/createStudySet", {
           method: "POST",
           headers: {'Content-Type': 'application/json'}, 
           body: JSON.stringify(postData)
@@ -77,7 +77,7 @@ export function createStudySet( SN, SO){
         console.log("creating set did not work for setName:" + SN);
       }
 }
-export function addTerm(SSID, T, D){
+export async function addTerm(SSID, T, D){
     try{
         //post empty set, then get sets to get setID, then use setID and add each term(individually or at once)
         let postData;
@@ -86,7 +86,7 @@ export function addTerm(SSID, T, D){
         postData.parentSetID = SSID;
         //let termsData = {term:"ethan", definition:"jones",studySetID:1};
     
-        fetch("http://54.211.204.247:8080/StudyUp2/terms/addTerm", {
+        await fetch("http://54.211.204.247:8181/StudyUp2/terms/addTerm", {
           method: "POST",
           headers: {'Content-Type': 'application/json'}, 
           body: JSON.stringify(postData)
@@ -100,7 +100,7 @@ export function addTerm(SSID, T, D){
       }
 }
   
-export function createUser(U, P, E, N){
+export async function createUser(U, P, E, N){
     try{
         let postData;
         postData.username = U;
@@ -109,7 +109,7 @@ export function createUser(U, P, E, N){
         postData.name = N;
         //let userData = {username: 'ighanby', password: 'test', email: 'ighanby@mtu.edu', name: 'ian yerd'};
 
-        fetch("http://54.211.204.247:8080/StudyUp2/users/createUser", {
+        await fetch("http://54.211.204.247:8181/StudyUp2/users/createUser", {
         method: "POST",
         headers: {'Content-Type': 'application/json'}, 
         body: JSON.stringify(postData)

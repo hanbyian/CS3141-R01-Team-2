@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import root from './index.js';
 import style from './style.css';
-//import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "./apiFunctions";
+import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "./apiFunctions";
 
 const emptySampleData = {};
+const sampleSetsKeys = [["germanSet",0],["spanishSet",1],];
+const sampleSets = [[["one","eins"],["two","zwei"],["three","drei"],["four","view"]],[["one","uno"],["two","dos"],["three","tres"],["four","quatro"]]];
 const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 export const flashcards = (
     <div></div>
@@ -69,6 +71,7 @@ export class HomePage extends React.Component{
         this.state = {
             username:this.props.username,
             viewingSet:0,
+            viewingIndex:0,
             viewState:0,
             newSet:[],
             newSetCount:0,
@@ -86,7 +89,7 @@ export class HomePage extends React.Component{
         this.setState({viewState:1});
     }
     handleViewingSet(newViewingSet){
-        this.setState({viewingSet:newViewingSet});
+        this.setState({viewingSet:newViewingSet[0], viewState:0, viewingIndex:newViewingSet[1]});
         
     }
     handleStudyingFlashcards(){
@@ -134,12 +137,16 @@ export class HomePage extends React.Component{
             </div>);
         }else if(this.state.viewState==0){/* viewState=0 is viewing a specific set */
             //setView for the currently selected set(stored in state) which shows the terms and has study button
+            console.log(sampleSets[this.state.viewingIndex]);
+            sampleSets[this.state.viewingIndex].forEach((index,value)=>console.log(index[0],index[1]));
             setView=
             (<div>
                 <h3 className="smallcaps">{this.state.viewingSet}</h3>
-                <ul className="smallcaps"></ul>
+                <ul>
+                {sampleSets[this.state.viewingIndex].map(e=><li key={e[0]} className="smallcaps">{e[0]} -- {e[1]}</li>)}
+                </ul>
                 <button onClick={this.handleStudyingFlashcards}>Study This Set</button>
-            </div>);//need to map list here
+            </div>);
         } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
             //do da flashcard ting
             setView=(<div>
@@ -156,7 +163,7 @@ export class HomePage extends React.Component{
             <div>
                 <h3 className="smallcaps">My Sets</h3>
                 <ul className="smallcaps">
-                    {this.state.allSets.length==0? <p>you have no sets</p>: this.state.allSets.map(e => (<li key={e[0]}><button onClick = {ee => this.handleViewingSet(e[0])}>{e[1]}</button></li>))}
+                    {sampleSetsKeys.length==0? <p>you have no sets</p>: sampleSetsKeys.map(e => (<li key={e[0]}><button onClick = {ee => this.handleViewingSet(e)}>{e[0]}</button></li>))}
                 </ul>
                 <button className="smallcaps" onClick={this.handleCreating}>+ Create Set</button>
                 <p className="smallcaps">Select a set to view it and study</p>
