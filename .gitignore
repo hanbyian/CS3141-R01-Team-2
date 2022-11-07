@@ -3,6 +3,7 @@
 *.iws
 *.iml
 *.ipr
+backend/target
 
 ### VS Code ###
 .vscode/

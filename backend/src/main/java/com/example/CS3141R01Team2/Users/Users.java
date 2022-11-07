@@ -105,9 +105,7 @@ public class Users {
         this.email = email;
         this.name = name;
     }
-    public void addSet(StudySet insert){
 
-    }
     public Users() {
     }
 }
