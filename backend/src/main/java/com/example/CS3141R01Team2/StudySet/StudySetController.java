@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
  * StudySetController includes all endpoint CRUD mapping for the API for the StudySet Entity
  */
 @RestController
-@RequestMapping(path = "api/v1/studyset")
+@RequestMapping(path = "studyset")
 public class StudySetController {
     /**
      * Request Class acts as a wrapper for some of the Controller methods,

@@ -19,7 +19,7 @@ import org.springframework.web.context.request.WebRequest;
  */
 //Controllers expose the endpoints to whatever needs to call them.
 @RestController //RestController means http request will be handled by this controller
-@RequestMapping(path="api/v1/users") //Tells where to search for the endpoint in when we request something
+@RequestMapping(path="users") //Tells where to search for the endpoint in when we request something
 public class UsersController {
 
     private final UsersService userService;
