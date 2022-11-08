@@ -116,7 +116,19 @@ export class HomePage extends React.Component{
         this.state.allSets[this.state.allSets.length]=currentSet;
         this.setState({newSetCount:this.state.newSetCount});
     }
+    async separateFunction(){
+        try{
+            let tempData = await showSetsData();
+            tempData.map(e=>console.log(e));
+            tempData.map(e=>e.map(ee=>console.log(ee)));
+            console.log(tempData);
+            }catch(e){
+                console.log(e);
+                console.log("did not work");
+            }
+    }
     render() {
+        this.separateFunction();
         let setView;
         if(this.state.viewState == 1){/* viewState=1 is set creation mode*/
             let firstTerm = (
