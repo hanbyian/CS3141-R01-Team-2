@@ -3,10 +3,9 @@ import {React, Component} from 'react';
 import { LoginPage,HomePage } from './groups.js';
 
 function App(){
-  
     return (
       <div>
-        <LoginPage/>
+         <LoginPage/>
       </div>
     );
   }

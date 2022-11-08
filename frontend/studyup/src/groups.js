@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import root from './index.js';
 import style from './style.css';
+import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "./apiFunctions";
 
 const emptySampleData = {};
+const sampleSetsKeys = [["germanSet",0],["spanishSet",1],];
+const sampleSets = [[["one","eins"],["two","zwei"],["three","drei"],["four","view"]],[["one","uno"],["two","dos"],["three","tres"],["four","quatro"]]];
 const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 export const flashcards = (
     <div></div>
@@ -20,8 +23,12 @@ export class LoginPage extends React.Component{
     handleLoginSignup(){
         this.setState({showLogin:(!this.state.showLogin)});
     }
-    confirmUser(){
-        root.render(<HomePage setKey={Object.entries(sampleData.sets)[0][0]} setValue={Object.entries(sampleData.sets)[0][1]} sets={sampleData.sets}/>);
+    async confirmUser(){
+        //const tempData = await ShowUsersData();
+        //const userID = document.getElementById("loginUsername").value;
+        //const passID = document.getElementById("loginPassword").value;
+        const toRender = <HomePage username="ijhanby"/>;//this works
+        root.render(toRender);
     }
     registerUser(){
 
@@ -30,18 +37,18 @@ export class LoginPage extends React.Component{
         let login = (
         <div className="signInForm alignc"><br></br>
             <form onSubmit={this.confirmUser}>
-                <input className="inputtext" type="text" placeholder="username"></input>
-                <input className="inputtext" type="text" placeholder="password"></input><br></br>
-                <button className="smallcaps button1" type="submit">Log In</button>
+                <input type="text" className="inputtext " placeholder="username" id="loginUsername"></input>
+                <input type="text" className="inputtext" placeholder="password" id ="loginPassword"></input><br></br>
+                <button type="submit" className="smallcaps button1">Log In</button>
             </form>
             <button className="smallcaps button1" onClick={this.handleLoginSignup}>Sign Up</button>
         </div>);
         let signup = (
         <div className="loginForm alignc"><br></br>
             <form onSubmit={this.registerUser}>
-                <input className="inputtext" type="text" placeholder="select a username"></input>
-                <input className="inputtext" type="text" placeholder="select a password"></input><br></br>
-                <button className="smallcaps button1" type="submit">Sign Up</button>
+                <input type="text" className="inputtext" placeholder="select a username"></input>
+                <input type="text" className="inputtext" placeholder="select a password"></input><br></br>
+                <button type="submit" className="smallcaps button1">Sign Up</button>
             </form>
             <button className="smallcaps button1" onClick={this.handleLoginSignup}>Log In</button>
         </div>);
@@ -61,18 +68,32 @@ export class LoginPage extends React.Component{
 export class HomePage extends React.Component{
     constructor(props){
         super(props);
-        this.state = {viewingSetKey:this.props.setKey, viewingSetValue:this.props.setValue, allSets:this.props.sets, isCreating:false, newSet:[], newSetCount:0};
+        this.state = {
+            username:this.props.username,
+            viewingSet:0,
+            viewingIndex:0,
+            viewState:0,
+            newSet:[],
+            newSetCount:0,
+            allSets:[]
+        };
+        //userSets = allSetsForUser(this.state.username);
+
         this.handleCreating = this.handleCreating.bind(this);
         this.handleViewingSet = this.handleViewingSet.bind(this);
         this.addTerm = this.addTerm.bind(this);
         this.pushSet=this.pushSet.bind(this);
+        this.handleStudyingFlashcards = this.handleStudyingFlashcards.bind(this);
     }
     handleCreating(){
-        this.setState({isCreating:true});
+        this.setState({viewState:1});
     }
-    handleViewingSet(newViewingKey, newViewingValue){
-        this.setState({viewingSetKey:newViewingKey, viewingSetValue:newViewingValue, isCreating:false});
+    handleViewingSet(newViewingSet){
+        this.setState({viewingSet:newViewingSet[0], viewState:0, viewingIndex:newViewingSet[1]});
         
+    }
+    handleStudyingFlashcards(){
+        this.setState({viewState:2});
     }
     addTerm(){
         let nextTerm = (
@@ -84,23 +105,32 @@ export class HomePage extends React.Component{
         this.setState({newSetCount:this.state.newSet.push(nextTerm)});
     }
     pushSet(){
-        let currentSet={};
+        let currentSet=[];
         for(var i = 0;i<(this.state.newSetCount);i++){
             let term = document.getElementById(i+"term").value;
             let definition = document.getElementById(i+"definition").value;
-            console.log(term);
-            console.log(definition);
-            currentSet[term]=definition.toString();
+            currentSet[i]=[term.toString(),definition.toString()];
         }
         let setName = document.getElementById("newSetName").value.toString();
         let emptySet = {};emptySet[setName.toString()]=currentSet;
-        //this.setState({allSets:emptySet});
-        this.state.allSets[setName]=currentSet;
+        this.state.allSets[this.state.allSets.length]=currentSet;
         this.setState({newSetCount:this.state.newSetCount});
     }
+    async separateFunction(){
+        try{
+            let tempData = await showSetsData();
+            tempData.map(e=>console.log(e));
+            tempData.map(e=>e.map(ee=>console.log(ee)));
+            console.log(tempData);
+            }catch(e){
+                console.log(e);
+                console.log("did not work");
+            }
+    }
     render() {
+        this.separateFunction();
         let setView;
-        if(this.state.isCreating){
+        if(this.state.viewState == 1){/* viewState=1 is set creation mode*/
             let firstTerm = (
             <div className="set element" id={this.state.newSet.length} >
                 <input placeholder="term" id={this.state.newSet.length+"term"}></input>
@@ -117,33 +147,41 @@ export class HomePage extends React.Component{
                 <button className="smallcaps button1" onClick={this.addTerm}>+ Add new term</button>
                 <button className="smallcaps button1" onClick={this.pushSet}>Finish Making Set</button>
             </div>);
-        }else{
+        }else if(this.state.viewState==0){/* viewState=0 is viewing a specific set */
             //setView for the currently selected set(stored in state) which shows the terms and has study button
+            console.log(sampleSets[this.state.viewingIndex]);
+            sampleSets[this.state.viewingIndex].forEach((index,value)=>console.log(index[0],index[1]));
             setView=
             (<div>
-                <h3 className="smallcaps">{this.state.viewingSetKey}</h3>
-                <ul className="smallcaps">{Object.entries(this.state.viewingSetValue).map(([key,value]) => (<li>{key} -- {value}</li>))}</ul>
-                <button className="smallcaps button1">Study This Set</button>
+                <h3 className="smallcaps">{this.state.viewingSet}</h3>
+                <ul>
+                {sampleSets[this.state.viewingIndex].map(e=><li key={e[0]} className="smallcaps">{e[0]} -- {e[1]}</li>)}
+                </ul>
+                <button onClick={this.handleStudyingFlashcards}>Study This Set</button>
             </div>);
+        } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
+            //do da flashcard ting
+            setView=(<div>
+                <p>lol you thought</p>
+            </div>)
         }
         return (
             <div>
             <div className="header">
                 <h1 className="studyupheader">StudyUp</h1>
                 <h2 className="studyupblizz">Sponsored by Blizzard T. Husky</h2>
-                <hr></hr>
             </div>
             {setView}
             <div>
                 <h3 className="smallcaps">My Sets</h3>
                 <ul className="smallcaps">
-                    {this.state.allSets.length==0? <p className="smallcaps">you have no sets</p>: Object.entries(this.state.allSets).map(([key,value]) => (<li><button className="button1" onClick = {(e) => this.handleViewingSet(key,value,e)}>{key}</button></li>))}
+                    {sampleSetsKeys.length==0? <p>you have no sets</p>: sampleSetsKeys.map(e => (<li key={e[0]}><button onClick = {ee => this.handleViewingSet(e)}>{e[0]}</button></li>))}
                 </ul>
-                <button className="smallcaps button1" onClick={this.handleCreating}>+ Create Set</button>
+                <button className="smallcaps" onClick={this.handleCreating}>+ Create Set</button>
                 <p className="smallcaps">Select a set to view it and study</p>
             </div>
             </div>
         );
     }
 }
-
+//onClick = {ee => this.handleViewingSet(e[0])}
