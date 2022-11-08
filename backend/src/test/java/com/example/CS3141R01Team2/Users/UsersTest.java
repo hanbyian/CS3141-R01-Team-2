@@ -21,7 +21,6 @@ class UsersTest {
      *   <li>{@link Users#setPassword(String)}
      *   <li>{@link Users#setStudySets(List)}
      *   <li>{@link Users#setUsername(String)}
-     *   <li>{@link Users#addSet(StudySet)}
      *   <li>{@link Users#getEmail()}
      *   <li>{@link Users#getName()}
      *   <li>{@link Users#getPassword()}
@@ -48,7 +47,6 @@ class UsersTest {
         StudySet studySet = new StudySet();
         studySet.setSetName("Set Name");
         studySet.setSetOwner(users);
-        actualUsers.addSet(studySet);
         assertEquals("jane.doe@example.org", actualUsers.getEmail());
         assertEquals("Name", actualUsers.getName());
         assertEquals("iloveyou", actualUsers.getPassword());
@@ -69,7 +67,6 @@ class UsersTest {
      *   <li>{@link Users#setStudySets(List)}
      *   <li>{@link Users#setUsername(String)}
      *   <li>{@link Users#Users()}
-     *   <li>{@link Users#addSet(StudySet)}
      *   <li>{@link Users#getEmail()}
      *   <li>{@link Users#getName()}
      *   <li>{@link Users#getPassword()}
@@ -96,7 +93,6 @@ class UsersTest {
         StudySet studySet = new StudySet();
         studySet.setSetName("Set Name");
         studySet.setSetOwner(users);
-        actualUsers.addSet(studySet);
         assertEquals("jane.doe@example.org", actualUsers.getEmail());
         assertEquals("Name", actualUsers.getName());
         assertEquals("iloveyou", actualUsers.getPassword());
