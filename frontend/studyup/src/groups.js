@@ -23,24 +23,22 @@ export class LoginPage extends React.Component{
     handleLoginSignup(){
         this.setState({showLogin:(!this.state.showLogin)});
     }
-    async confirmUser(){
-        const userID = document.getElementById("loginUsername").value;
-        const passID = document.getElementById("loginPassword").value;
-        let validated = false;
-        await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
-        {
-            console.log(e[1] + ":" + e[2]);
-            console.log(userID + ":" + passID);
-            if((userID==e[1] && passID==e[2])){
-                validated = true;
-            }
-      }));
-      if(validated){
-        const toRender = <HomePage username="ijhanby"/>;
-        root.render(toRender);
-      }
 
-        
+    async confirmUser(){
+        if(document.getElementById("loginUsername")!=null){
+            const userID = document.getElementById("loginUsername").value;
+            const passID = document.getElementById("loginPassword").value;
+            await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
+            {
+                console.log(e[1] + ":" + e[2]);
+                console.log(userID + ":" + passID);
+                if((userID==e[1] && passID==e[2])){
+                    this.setState({loggedIn:true});
+                    let toRender = <HomePage username="ijhanby"/>;
+                    root.render(toRender);
+                }
+            }));
+        }
     }
     async registerUser(){
         const username = document.getElementById("signupUser").value;
@@ -50,6 +48,7 @@ export class LoginPage extends React.Component{
         if(username!=''&&password!=''&&email!=''&&name!='')await createUser(username,password,email,name);
     }
     render(){
+
         let login = (
         <div className="signInForm alignc"><br></br>
             <form onSubmit={this.confirmUser}>
@@ -75,6 +74,9 @@ export class LoginPage extends React.Component{
             showing = login;
         }else{
             showing = signup;
+        }
+        if(this.state.loggedIn){
+            return <HomePage username="ijhanby"/>;
         }
         return (
             <div>
