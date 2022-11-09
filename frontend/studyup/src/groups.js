@@ -24,20 +24,21 @@ export class LoginPage extends React.Component{
         this.setState({showLogin:(!this.state.showLogin)});
     }
     async confirmUser(){
-        //const tempData = await ShowUsersData();
         const userID = document.getElementById("loginUsername").value;
         const passID = document.getElementById("loginPassword").value;
-        //await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
-        //{
-            //console.log(e[1] + ":" + e[2]);
-            //console.log(userID + ":" + passID);
-            //if((userID==e[1] && passID==e[2]) || this.state.loggedIn==true){
-          //      this.setState({loggedIn:true});
-        //    }
-      //}));
-
-      const toRender = <HomePage username="ijhanby"/>;
-      root.render(toRender);
+        let validated = false;
+        await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
+        {
+            console.log(e[1] + ":" + e[2]);
+            console.log(userID + ":" + passID);
+            if((userID==e[1] && passID==e[2])){
+                validated = true;
+            }
+      }));
+      if(validated){
+        const toRender = <HomePage username="ijhanby"/>;
+        root.render(toRender);
+      }
 
         
     }
@@ -46,7 +47,7 @@ export class LoginPage extends React.Component{
         const password = document.getElementById("signupPass").value;
         const email = document.getElementById("signupEmail").value;
         const name = document.getElementById("signupName").value;
-        console.log("did I create user" + (await createUser(username,password,email,name)));
+        if(username!=''&&password!=''&&email!=''&&name!='')await createUser(username,password,email,name);
     }
     render(){
         let login = (
