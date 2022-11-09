@@ -5,7 +5,9 @@ import java.util.List;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.request.WebRequest;
 
 /**
  * @author wmisip
@@ -46,6 +48,13 @@ public class UsersController {
     @PostMapping("/createUser")
     public void createUser(@RequestBody Users user) {  //convert password to hash?
         userService.createUser(user);
+    }
+
+    @GetMapping("/registration")
+    public String showRegistrationForm(WebRequest request, Model model){
+        UserDTO userDTO = new UserDTO();
+        model.addAttribute("user", userDTO);
+        return "registration";
     }
 
 /*    @GetMapping("/authenticate/{username}/{password}")
