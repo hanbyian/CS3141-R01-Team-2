@@ -65,10 +65,17 @@
 			<scope>test</scope>
 		</dependency>
 
+<<<<<<< Updated upstream
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-security</artifactId>
 				</dependency>
+=======
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+>>>>>>> Stashed changes
 
 
 		<!-- postgres Dependencies -->
@@ -77,17 +84,26 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- <dependency>
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
-		</dependency> -->
+		</dependency>
 
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+
+<<<<<<< Updated upstream
 				<dependency>
 					<groupId>org.springframework.security</groupId>
 					<artifactId>spring-security-test</artifactId>
 					<scope>test</scope>
 				</dependency>
+=======
+>>>>>>> Stashed changes
 		<!-- Tomcat Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

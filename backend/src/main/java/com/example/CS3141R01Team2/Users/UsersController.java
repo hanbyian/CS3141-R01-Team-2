@@ -46,6 +46,11 @@ public class UsersController {
         userService.createUser(user);
     }
 
+<<<<<<< Updated upstream
+=======
+//    public ModelAndView registerUserAccount(@ModelAttribute(""))
+
+>>>>>>> Stashed changes
 /*    @GetMapping("/authenticate/{username}/{password}")
     public Boolean getPassword(@PathVariable String username, @PathVariable String inputpassword){
         return userService.testPassword(username, inputpassword);

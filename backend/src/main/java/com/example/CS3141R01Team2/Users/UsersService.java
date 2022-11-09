@@ -4,11 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * @author wmisip
@@ -18,8 +19,10 @@ import org.springframework.web.bind.annotation.PostMapping;
  * Service method for the Users Controller allowing the api to make calls to the repository
  */
 @Service
-public class UsersService {
+public class UsersService implements UserDetailsService {
 
+    private final String USER_NOT_FOUND_MSG =
+            "user with email %s not found";
     private final UsersRepository usersRepository;
 
 
@@ -71,6 +74,13 @@ public class UsersService {
             }
         }
 
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username)
+            throws UsernameNotFoundException {
+        return usersRepository.findByUsername(username).orElseThrow(()->
+                new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG)));
     }
 
 //    /**
