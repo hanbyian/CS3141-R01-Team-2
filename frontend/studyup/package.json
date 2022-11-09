@@ -24,10 +24,6 @@
       "react-app/jest"
     ]
   },
-<<<<<<< Updated upstream:frontend/studyup/package.json
-=======
-  "proxy": "http://localhost:8080",
->>>>>>> Stashed changes:backend/src/main/frontend/studyup/package.json
   "browserslist": {
     "production": [
       ">0.2%",

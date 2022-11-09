@@ -71,20 +71,20 @@ public class Users implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
-    private Boolean locked;
-    private Boolean enabled;
-
-    public List<StudySet> getStudySets() {
-        return studySets;
-    }
-
-    public void setStudySets(List<StudySet> studySets) {
-        this.studySets = studySets;
-    }
-
-    @OneToMany(mappedBy="setID")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private List<StudySet> studySets;
+    private Boolean locked = false;
+    private Boolean enabled = false;
+//
+//    public List<StudySet> getStudySets() {
+//        return studySets;
+//    }
+//
+//    public void setStudySets(List<StudySet> studySets) {
+//        this.studySets = studySets;
+//    }
+//
+//    @OneToMany(mappedBy="setID")
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    private List<StudySet> studySets;
 
     @NonNull
     public Long getUserID() {
@@ -156,15 +156,11 @@ public class Users implements UserDetails {
                  @NonNull String password,
                  @NonNull String email,
                  @NonNull String name,
-                 UserRole userRole,
-                 Boolean locked,
-                 Boolean enabled) {
+                 UserRole userRole) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
         this.userRole = userRole;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 }

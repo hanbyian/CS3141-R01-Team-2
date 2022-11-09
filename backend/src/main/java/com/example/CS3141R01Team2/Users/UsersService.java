@@ -1,14 +1,19 @@
 package com.example.CS3141R01Team2.Users;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
+import com.example.CS3141R01Team2.Registration.token.ConfirmationToken;
+import com.example.CS3141R01Team2.Registration.token.ConfirmationTokenService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -19,17 +24,21 @@ import org.springframework.stereotype.Service;
  * Service method for the Users Controller allowing the api to make calls to the repository
  */
 @Service
+@AllArgsConstructor
 public class UsersService implements UserDetailsService {
 
     private final String USER_NOT_FOUND_MSG =
             "user with email %s not found";
     private final UsersRepository usersRepository;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    private final ConfirmationTokenService confirmationTokenService;
 
 
-    @Autowired
-    public UsersService(UsersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+//    @Autowired
+//    public UsersService(UsersRepository usersRepository) {
+//        this.usersRepository = usersRepository;
+//    }
 
     /**
      * method to return a List of all users in the database and their registration information
@@ -60,7 +69,7 @@ public class UsersService implements UserDetailsService {
      *
      * @param user  user entity, user + password that wants to be created
      */
-    public void createUser(Users user) {
+    public String createUser(Users user) {
         Optional<Users> getUserByUsername = usersRepository.findByUsername(user.getUsername());
 
         if(getUserByUsername.isPresent()){
@@ -70,7 +79,29 @@ public class UsersService implements UserDetailsService {
             if(getUserByEmail.isPresent()){
                 throw new IllegalStateException("email already taken!");
             } else{
+                String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+
+                user.setPassword(encodedPassword);
+
                 usersRepository.save(user);
+
+                String token = UUID.randomUUID().toString();
+                ConfirmationToken confirmationToken = new ConfirmationToken(
+
+                        token,
+                        LocalDateTime.now(),
+                        LocalDateTime.now().plusMinutes(15),
+                        user
+
+                );
+
+                confirmationTokenService.saveConfirmationToken(
+                        confirmationToken
+                );
+
+                //TODO: SEND EMAIL
+
+                return token;
             }
         }
 
@@ -80,8 +111,13 @@ public class UsersService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
         return usersRepository.findByUsername(username).orElseThrow(()->
-                new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG)));
+                new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
     }
+
+    public int enableUser(String email) {
+        return usersRepository.enableUser(email);
+    }
+
 
 //    /**
 //     * Takes a username and password. First checks if the username exists, then checks

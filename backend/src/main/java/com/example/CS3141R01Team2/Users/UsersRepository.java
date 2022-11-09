@@ -1,6 +1,7 @@
 package com.example.CS3141R01Team2.Users;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -44,7 +45,13 @@ public interface UsersRepository
      *
      * @return A List of all Users with their given information
      */
-    @Query("SELECT u.userID, u.username, u.password, u.email, u.name FROM users u")
+    @Query("SELECT u FROM users u")
     List<ArrayList<?>> findAllUsers();
+
+    @Transactional
+    @Modifying
+    @Query("UPDATE users u " +
+            "SET u.enabled = TRUE WHERE u.email = ?1")
+    int enableUser(String email);
 
 }
