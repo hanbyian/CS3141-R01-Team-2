@@ -152,9 +152,6 @@ public class Users implements UserDetails {
         this.name = name;
     }
 
-<<<<<<< Updated upstream
-    public Users() {
-=======
     public Users(@NonNull String username,
                  @NonNull String password,
                  @NonNull String email,
@@ -169,6 +166,5 @@ public class Users implements UserDetails {
         this.userRole = userRole;
         this.locked = locked;
         this.enabled = enabled;
->>>>>>> Stashed changes
     }
 }
