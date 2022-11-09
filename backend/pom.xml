@@ -65,17 +65,14 @@
 			<scope>test</scope>
 		</dependency>
 
-<<<<<<< Updated upstream
 				<dependency>
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-starter-security</artifactId>
 				</dependency>
-=======
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
->>>>>>> Stashed changes
 
 
 		<!-- postgres Dependencies -->
@@ -96,14 +93,12 @@
 			<scope>test</scope>
 		</dependency>
 
-<<<<<<< Updated upstream
 				<dependency>
 					<groupId>org.springframework.security</groupId>
 					<artifactId>spring-security-test</artifactId>
 					<scope>test</scope>
 				</dependency>
-=======
->>>>>>> Stashed changes
+
 		<!-- Tomcat Dependencies -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
