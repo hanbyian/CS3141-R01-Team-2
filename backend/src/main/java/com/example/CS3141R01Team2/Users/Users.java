@@ -163,4 +163,18 @@ public class Users implements UserDetails {
         this.name = name;
         this.userRole = userRole;
     }
+
+    public Users(@NonNull String username,
+                 @NonNull String password,
+                 @NonNull String email,
+                 @NonNull String name,
+                 UserRole userRole,
+                 Boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.userRole = userRole;
+        this.enabled = enabled;
+    }
 }

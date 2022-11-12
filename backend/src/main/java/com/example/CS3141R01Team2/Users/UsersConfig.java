@@ -2,9 +2,11 @@ package com.example.CS3141R01Team2.Users;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
  * @author wmisip
@@ -17,23 +19,30 @@ import org.springframework.context.annotation.Configuration;
  * Development
  */
 @Configuration
+@AllArgsConstructor
 public class UsersConfig {
+
+    BCryptPasswordEncoder bCryptPasswordEncoder;
     
     @Bean
     CommandLineRunner commandLineRunner(UsersRepository repository){
         return args -> {
             Users wil = new Users(
                 "wmisip",
-            "123Aei",
+            bCryptPasswordEncoder.encode("wmisip"),
             "wmisip@gmail.com",
-            "Wil"
+            "Wil",
+                    UserRole.ADMIN,
+                    true
             );
 
             Users ian = new Users(
                 "ijhanby",
-            "1762fro",
+            bCryptPasswordEncoder.encode("ijhanby"),
             "ijhanby@gmail.com",
-            "Ian"
+            "Ian",
+                    UserRole.USER,
+                    true
             );
             
             repository.saveAll(         //saves users
