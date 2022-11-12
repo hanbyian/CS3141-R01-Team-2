@@ -1,4 +1,4 @@
-package com.example.CS3141R01Team2.Security;
+package com.example.CS3141R01Team2.Registration.Security;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
