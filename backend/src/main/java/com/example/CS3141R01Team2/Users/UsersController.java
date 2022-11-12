@@ -3,7 +3,6 @@ package com.example.CS3141R01Team2.Users;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.CS3141R01Team2.Security.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -49,12 +48,12 @@ public class UsersController {
         userService.createUser(user);
     }
 
-    @GetMapping("/registration")
-    public String showRegistrationForm(WebRequest request, Model model){
-        UserDTO userDTO = new UserDTO();
-        model.addAttribute("user", userDTO);
-        return "registration";
-    }
+//    @GetMapping("/registration")
+//    public String showRegistrationForm(WebRequest request, Model model){
+//        UserDTO userDTO = new UserDTO();
+//        model.addAttribute("user", userDTO);
+//        return "registration";
+//    }
 
 /*    @GetMapping("/authenticate/{username}/{password}")
     public Boolean getPassword(@PathVariable String username, @PathVariable String inputpassword){

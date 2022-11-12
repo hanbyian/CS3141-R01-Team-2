@@ -1,4 +1,4 @@
-package com.example.CS3141R01Team2.Registration.Security;
+package com.example.CS3141R01Team2.Security;
 
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
