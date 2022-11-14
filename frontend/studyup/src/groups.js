@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import root from './index.js';
 import style from './style.css';
+import { Flashcards } from './flashcards.js';
 import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "./apiFunctions";
 
 const emptySampleData = {};
@@ -28,16 +29,16 @@ export class LoginPage extends React.Component{
         if(document.getElementById("loginUsername")!=null){
             const userID = document.getElementById("loginUsername").value;
             const passID = document.getElementById("loginPassword").value;
-            await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
-            {
-                console.log(e[1] + ":" + e[2]);
-                console.log(userID + ":" + passID);
-                if((userID==e[1] && passID==e[2])){
-                    this.setState({loggedIn:true});
-                    let toRender = <HomePage username="ijhanby"/>;
-                    root.render(toRender);
-                }
-            }));
+            let toRender = <HomePage username="ijhanby"/>;
+            root.render(toRender);
+            //await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
+            //{
+            //    console.log(e[1] + ":" + e[2]);
+            //    console.log(userID + ":" + passID);
+            //    if((userID==e[1] && passID==e[2])){
+            //        this.setState({loggedIn:true});
+            //    }
+            //}));
         }
     }
     async registerUser(){
@@ -181,9 +182,7 @@ export class HomePage extends React.Component{
             </div>);
         } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
             //do da flashcard ting
-            setView=(<div>
-                <p>lol you thought</p>
-            </div>)
+            setView=(<Flashcards set={sampleSets[this.state.viewingIndex]}/>);
         }
         return (
             <div>
