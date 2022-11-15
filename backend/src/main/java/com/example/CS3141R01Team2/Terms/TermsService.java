@@ -55,6 +55,23 @@ public class TermsService {
         }
     }
 
+    /**
+     * Returns terms of a given study set's id, if the study set's id doesn't exist
+     * return an error message
+     *
+     * @param studySetID
+     * @return listOfTerms
+     */
+    public List<ArrayList<?>> showTermsForStudySet(Long studySetID) {
+        Optional<StudySet> getTermsByID = studySetRepository.findById(studySetID);
+        if (getTermsByID.isPresent()) {
+            List<ArrayList<?>>  listOfTerms= termsRepository.showTermsByStudySet(studySetID);
+            return listOfTerms;
+        } else {
+            throw new IllegalStateException("Study set does not exist!");
+        }
+
+    }
 //    /**
 //     *
 //     * @param delTerm
