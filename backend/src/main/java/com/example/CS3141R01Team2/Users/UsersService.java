@@ -72,12 +72,32 @@ public class UsersService implements UserDetailsService {
     public String createUser(Users user) {
         Optional<Users> getUserByUsername = usersRepository.findByUsername(user.getUsername());
 
-        if(getUserByUsername.isPresent()){
+        if(getUserByUsername.isPresent() && getUserByUsername.get().getEnabled() == true){
             throw new IllegalStateException("username already exists!");
         } else{
             Optional<Users> getUserByEmail = usersRepository.findByEmail(user.getEmail());
             if(getUserByEmail.isPresent()){
-                throw new IllegalStateException("email already taken!");
+                if(getUserByEmail.get().getUsername().equals(user.getUsername()) &&
+                        getUserByEmail.get().getEmail().equals(user.getEmail())
+                && !getUserByEmail.get().getEnabled()){
+                    String token = UUID.randomUUID().toString();
+                    ConfirmationToken confirmationToken = new ConfirmationToken(
+
+                            token,
+                            LocalDateTime.now(),
+                            LocalDateTime.now().plusMinutes(15),
+                            getUserByEmail.get()
+
+                    );
+
+                    confirmationTokenService.saveConfirmationToken(
+                            confirmationToken
+                    );
+
+                    return token;
+                }else{
+                    throw new IllegalStateException("email already taken!");
+                }
             } else{
                 String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
 
@@ -98,8 +118,6 @@ public class UsersService implements UserDetailsService {
                 confirmationTokenService.saveConfirmationToken(
                         confirmationToken
                 );
-
-                //TODO: SEND EMAIL
 
                 return token;
             }

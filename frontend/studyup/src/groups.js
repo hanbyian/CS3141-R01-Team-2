@@ -25,10 +25,11 @@ export class LoginPage extends React.Component{
     }
     async confirmUser(){
         //const tempData = await ShowUsersData();
-        //const userID = document.getElementById("loginUsername").value;
-        //const passID = document.getElementById("loginPassword").value;
+        const userID = document.getElementById("loginUsername").value;
+        const passID = document.getElementById("loginPassword").value;
         const toRender = <HomePage username="ijhanby"/>;//this works
-        root.render(toRender);
+        confirmUserAPI(userID, passID);
+        // root.render(toRender);
     }
     registerUser(){
 
@@ -36,7 +37,7 @@ export class LoginPage extends React.Component{
     render(){
         let login = (
         <div className="signInForm alignc"><br></br>
-            <form onSubmit={this.confirmUser}>
+            <form id="login" method="POST" onSubmit={this.confirmUser}>
                 <input type="text" className="inputtext " placeholder="username" id="loginUsername"></input>
                 <input type="text" className="inputtext" placeholder="password" id ="loginPassword"></input><br></br>
                 <button type="submit" className="smallcaps button1">Log In</button>

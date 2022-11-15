@@ -72,7 +72,6 @@ class StudySetServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users);
         when(usersRepository.findByUsername((String) any())).thenReturn(ofResult);
@@ -95,7 +94,6 @@ class StudySetServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users);
         when(usersRepository.findByUsername((String) any())).thenReturn(ofResult);
@@ -124,7 +122,6 @@ class StudySetServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         StudySet studySet = new StudySet();
@@ -136,7 +133,6 @@ class StudySetServiceTest {
         users1.setEmail("jane.doe@example.org");
         users1.setName("Name");
         users1.setPassword("iloveyou");
-        users1.setStudySets(new ArrayList<>());
         users1.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users1);
         when(usersRepository.findByUsername((String) any())).thenReturn(ofResult);
@@ -156,7 +152,6 @@ class StudySetServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users);
         when(usersRepository.findByUsername((String) any())).thenReturn(ofResult);
@@ -174,7 +169,6 @@ class StudySetServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         StudySet studySet = new StudySet();

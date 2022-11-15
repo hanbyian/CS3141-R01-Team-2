@@ -61,14 +61,12 @@ class UsersServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         Users users1 = new Users();
         users1.setEmail("jane.doe@example.org");
         users1.setName("Name");
         users1.setPassword("iloveyou");
-        users1.setStudySets(new ArrayList<>());
         users1.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users1);
 
@@ -76,7 +74,6 @@ class UsersServiceTest {
         users2.setEmail("jane.doe@example.org");
         users2.setName("Name");
         users2.setPassword("iloveyou");
-        users2.setStudySets(new ArrayList<>());
         users2.setUsername("janedoe");
         Optional<Users> ofResult1 = Optional.of(users2);
         when(usersRepository.save((Users) any())).thenReturn(users);
@@ -87,7 +84,6 @@ class UsersServiceTest {
         users3.setEmail("jane.doe@example.org");
         users3.setName("Name");
         users3.setPassword("iloveyou");
-        users3.setStudySets(new ArrayList<>());
         users3.setUsername("janedoe");
         assertThrows(IllegalStateException.class, () -> usersService.createUser(users3));
         verify(usersRepository).findByUsername((String) any());
@@ -102,14 +98,12 @@ class UsersServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         Users users1 = new Users();
         users1.setEmail("jane.doe@example.org");
         users1.setName("Name");
         users1.setPassword("iloveyou");
-        users1.setStudySets(new ArrayList<>());
         users1.setUsername("janedoe");
         Optional<Users> ofResult = Optional.of(users1);
         when(usersRepository.save((Users) any())).thenReturn(users);
@@ -120,7 +114,6 @@ class UsersServiceTest {
         users2.setEmail("jane.doe@example.org");
         users2.setName("Name");
         users2.setPassword("iloveyou");
-        users2.setStudySets(new ArrayList<>());
         users2.setUsername("janedoe");
         assertThrows(IllegalStateException.class, () -> usersService.createUser(users2));
         verify(usersRepository).findByEmail((String) any());
@@ -140,7 +133,6 @@ class UsersServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         assertThrows(IllegalStateException.class, () -> usersService.createUser(users));
         verify(usersRepository).findByUsername((String) any());
