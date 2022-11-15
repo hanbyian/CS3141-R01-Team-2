@@ -85,7 +85,7 @@ public class StudySetController {
      * Get Mapping Request to return all Study Sets owned by a given user
      *
      * @param username
-     * @return
+     * @return List<ArrayList>
      */
     @GetMapping("/showSetsForUser/{username}")
     public List<ArrayList<?>> showSetsForUser(@PathVariable String username) {

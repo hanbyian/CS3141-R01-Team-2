@@ -84,4 +84,15 @@ public class TermsController {
     public void addTerm(@RequestBody Request request) {
         termsService.addTerm(request.getParentSetID(), request.getTerm(), request.getDefinition());
     }
+
+    /**
+     * Get request to return all Study Sets owned by a given user
+     *
+     * @param studySetID
+     * @return List<ArrayList>
+     */
+    @GetMapping("/showTermsForStudySet/{studySetID}")
+    public List<ArrayList<?>> showTermsForStudySet(@PathVariable Long studySetID) {
+        return termsService.showTermsForStudySet(studySetID);
+    }
 }
