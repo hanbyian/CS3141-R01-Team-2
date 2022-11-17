@@ -85,5 +85,17 @@ class StudySetControllerTest {
                 .perform(requestBuilder);
         actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
+    /**
+     * Method under test: {@link StudySetController#showSetsForUser()}
+     */
+    @Test
+    void testShowSetsForUser2() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/showSetsForUser");
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(studySetController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
 }
 

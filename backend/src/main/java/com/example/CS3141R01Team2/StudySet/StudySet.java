@@ -45,9 +45,9 @@ public class StudySet {
     @NonNull
     private Users setOwner;
 
-    @OneToMany(mappedBy = "parentSet")
-    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-    private Set<Terms> terms;
+//    @OneToMany(mappedBy = "parentSet")
+//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+//    private Set<Terms> terms;
 
     public String getSetName() {
         return setName;

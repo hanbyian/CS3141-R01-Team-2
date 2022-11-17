@@ -1,9 +1,6 @@
 package com.example.CS3141R01Team2.Users;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
-import java.util.ArrayList;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +30,12 @@ class UsersControllerTest {
     void testCreateUser() throws Exception {
         Users users = new Users();
         users.setEmail("jane.doe@example.org");
+        users.setEnabled(true);
+        users.setLocked(true);
         users.setName("Name");
         users.setPassword("iloveyou");
+        users.setUserID(1L);
+        users.setUserRole(UserRole.USER);
         users.setUsername("janedoe");
         String content = (new ObjectMapper()).writeValueAsString(users);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/createUser")

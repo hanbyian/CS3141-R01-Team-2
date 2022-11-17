@@ -4,6 +4,7 @@ import com.example.CS3141R01Team2.Email.EmailSender;
 import com.example.CS3141R01Team2.Registration.token.ConfirmationToken;
 import com.example.CS3141R01Team2.Registration.token.ConfirmationTokenService;
 import com.example.CS3141R01Team2.Users.UserRole;
+import com.example.CS3141R01Team2.Users.UsernameValidator;
 import com.example.CS3141R01Team2.Users.Users;
 import com.example.CS3141R01Team2.Users.UsersService;
 import lombok.AllArgsConstructor;
@@ -21,12 +22,16 @@ public class RegistrationService{
     private final ConfirmationTokenService confirmationTokenService;
 
     private final EmailSender emailSender;
+    private final UsernameValidator usernameValidator;
 
 
     public String register(RegistrationRequest request) {
         boolean isValidEmail = emailValidator.test(request.getEmail());
+        boolean isValidUsername = usernameValidator.test(request.getUsername());
         if(!isValidEmail){
             throw new IllegalStateException("Email not valid");
+        } else if (!isValidUsername){
+            throw new IllegalStateException("Username not valid");
         }
         String token = usersService.createUser(
                 new Users(

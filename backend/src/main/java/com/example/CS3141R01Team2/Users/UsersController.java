@@ -18,7 +18,7 @@ import org.springframework.web.context.request.WebRequest;
  */
 //Controllers expose the endpoints to whatever needs to call them.
 @RestController //RestController means http request will be handled by this controller
-@RequestMapping(path="users") //Tells where to search for the endpoint in when we request something
+@RequestMapping(path="/users") //Tells where to search for the endpoint in when we request something
 public class UsersController {
 
     private final UsersService userService;
@@ -34,7 +34,7 @@ public class UsersController {
      * @return List of ArrayLists containing each Users registration information
      */
     @GetMapping ("/showusers")//States that the following method is a Get Request
-    public List<ArrayList<?>> showUsers(){
+    public List<Users> showUsers(){
       return userService.showUsers();
     }
 

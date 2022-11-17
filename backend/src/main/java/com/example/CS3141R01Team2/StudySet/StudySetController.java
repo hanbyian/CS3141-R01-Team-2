@@ -8,6 +8,8 @@ import com.example.CS3141R01Team2.Users.Users;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -18,7 +20,7 @@ import org.springframework.web.bind.annotation.*;
  * StudySetController includes all endpoint CRUD mapping for the API for the StudySet Entity
  */
 @RestController
-@RequestMapping(path = "studyset")
+@RequestMapping(path = "/studyset")
 public class StudySetController {
     /**
      * Request Class acts as a wrapper for some of the Controller methods,
@@ -82,13 +84,18 @@ public class StudySetController {
     }
 
     /**
-     * Get Mapping Request to return all Study Sets owned by a given user
+     * Get Mapping Request to return all Study Sets owned by the current logged in user
      *
-     * @param username
      * @return List<ArrayList>
      */
-    @GetMapping("/showSetsForUser/{username}")
-    public List<ArrayList<?>> showSetsForUser(@PathVariable String username) {
+//    @GetMapping("/showSetsForUser/{username}")
+//    public List<StudySet> showSetsForUser(@PathVariable String username) {
+//        return studySetService.showSetsForUser(username);
+//    }
+    @GetMapping("/showSetsForUser")
+    public List<ArrayList<?>> showSetsForUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String username = auth.getName();
         return studySetService.showSetsForUser(username);
     }
 

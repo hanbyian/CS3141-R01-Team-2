@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import com.example.CS3141R01Team2.Users.Users;
 import com.example.CS3141R01Team2.Users.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**

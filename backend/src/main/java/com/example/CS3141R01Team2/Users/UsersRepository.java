@@ -46,7 +46,7 @@ public interface UsersRepository
      * @return A List of all Users with their given information
      */
     @Query("SELECT u FROM users u")
-    List<ArrayList<?>> findAllUsers();
+    List<Users> findAllUsers();
 
     @Transactional
     @Modifying

@@ -55,6 +55,18 @@ class TermsControllerTest {
     }
 
     /**
+     * Method under test: {@link TermsController#getList()}
+     */
+    @Test
+    void testGetList2() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/getTerms");
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(termsController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    /**
      * Methods under test:
      *
      * <ul>
@@ -76,6 +88,19 @@ class TermsControllerTest {
         assertEquals("Definition", actualRequest.getDefinition());
         assertEquals(1L, actualRequest.getParentSetID().longValue());
         assertEquals("Term", actualRequest.getTerm());
+    }
+
+    /**
+     * Method under test: {@link TermsController#showTermsForStudySet(Long)}
+     */
+    @Test
+    void testShowTermsForStudySet() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/showTermsForStudySet/{studySetID}",
+                1L);
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(termsController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
 
