@@ -1,4 +1,4 @@
-package com.example.CS3141R01Team2.Users;
+package com.example.CS3141R01Team2.Registration;
 
 import java.util.function.Predicate;
 import java.util.regex.Pattern;

@@ -4,7 +4,6 @@ import com.example.CS3141R01Team2.Email.EmailSender;
 import com.example.CS3141R01Team2.Registration.token.ConfirmationToken;
 import com.example.CS3141R01Team2.Registration.token.ConfirmationTokenService;
 import com.example.CS3141R01Team2.Users.UserRole;
-import com.example.CS3141R01Team2.Users.UsernameValidator;
 import com.example.CS3141R01Team2.Users.Users;
 import com.example.CS3141R01Team2.Users.UsersService;
 import lombok.AllArgsConstructor;
