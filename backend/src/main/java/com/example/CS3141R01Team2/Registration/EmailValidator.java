@@ -12,20 +12,6 @@ import java.util.regex.Pattern;
 public class EmailValidator implements Predicate<String> {
     @Override
     public boolean test(String s) {
-        List emails = new ArrayList();
-        emails.add("user@domain.com");
-        emails.add("user@domain.co.in");
-        emails.add("user.name@domain.com");
-        emails.add("user_name@domain.com");
-        emails.add("username@yahoo.corporate.in");
-
-        //Invalid emails
-        emails.add(".username@yahoo.com");
-        emails.add("username@yahoo.com.");
-        emails.add("username@yahoo..com");
-        emails.add("username@yahoo.c");
-        emails.add("username@yahoo.corporate");
-
         String regex = "^[\\w!#$%&'*+/=?`{|}~^-]+(?:\\.[\\w!#$%&'*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$";
 
         Pattern pattern = Pattern.compile(regex);

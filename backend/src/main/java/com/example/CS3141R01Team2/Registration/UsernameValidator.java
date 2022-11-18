@@ -1,8 +1,11 @@
 package com.example.CS3141R01Team2.Registration;
 
+import org.springframework.stereotype.Service;
+
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 
+@Service
 public class UsernameValidator implements Predicate<String> {
     @Override
     public boolean test(String s) {
