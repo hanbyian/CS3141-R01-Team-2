@@ -55,8 +55,8 @@ public class MySimpleUrlAuthenticationSuccessHandler
 
     protected String determineTargetURL(final Authentication authentication){
         Map<String, String> roleTargetURLMap = new HashMap<>();
-        roleTargetURLMap.put("USER", "https://www.google.com");
-        roleTargetURLMap.put("ADMIN", "https://www.google.com/search?q=admin&hl=en&sxsrf=ALiCzsYy7anVaHXzXki3i05DuPa7KEbTyw%3A1668479855629&source=hp&ei=b_tyY8WcI_e2qtsPhOu34Ao&iflsig=AJiK0e8AAAAAY3MJfxpXzzQwUgUDXoqjiJmueZ83x8qU&ved=0ahUKEwiFkO3ok6_7AhV3m2oFHYT1DawQ4dUDCAk&uact=5&oq=admin&gs_lcp=Cgdnd3Mtd2l6EAMyBwgAELEDEEMyCwgAEIAEELEDEIMBMgsIABCABBCxAxCDATILCAAQgAQQsQMQgwEyCggAEIAEEIcCEBQyEAgAEIAEEIcCELEDEIMBEBQyCwguEIAEEMcBEK8BMggIABCABBCxAzIICAAQgAQQsQMyBQgAEIAEOgcIIxDqAhAnOgQIIxAnOhEILhCABBCxAxCDARDHARDRAzoUCC4QgAQQsQMQgwEQxwEQ0QMQ1AI6CwguEIAEEMcBENEDOgsILhCDARDUAhCxAzoICAAQsQMQgwE6BAgAEEM6EAguELEDEIMBEMcBENEDEEM6EwguELEDEIMBEMcBENEDENQCEEM6CggAELEDEIMBEEM6BAguEENQ8QJY9QZgqQhoAXAAeACAAW2IAYAEkgEDMS40mAEAoAEBsAEK&sclient=gws-wiz");
+        roleTargetURLMap.put("USER", "/users/showusers");
+        roleTargetURLMap.put("ADMIN", "/studyset/showstudyset");
 
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
         for(final GrantedAuthority grantedAuthority : authorities){
