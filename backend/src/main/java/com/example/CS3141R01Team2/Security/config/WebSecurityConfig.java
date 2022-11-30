@@ -35,18 +35,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         UsernamePasswordAuthenticationFilter.class
                 )
                 .authorizeRequests()
-                .antMatchers(HttpMethod.POST, "/login").permitAll()
+//                .antMatchers(HttpMethod.POST, "/login").permitAll()
                 .antMatchers("/registration/**").permitAll()
 //                .antMatchers("/users/**", "/studyset/**", "/terms/**").permitAll()
 //                .antMatchers("/users/").hasRole("USER")
                 .anyRequest().authenticated()
 
 
-//                .and()
-//                .formLogin()
+                .and()
+                .formLogin()
 //                .loginPage("http://localhost:3000").permitAll()
 //                .loginProcessingUrl("/login")
 //                .successHandler(myAuthenticationSuccessHandler())
+                .defaultSuccessUrl("/users/showusers", true)
         ;
     }
 
