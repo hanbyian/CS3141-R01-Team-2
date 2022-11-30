@@ -14,14 +14,17 @@ export class Flashcards extends React.Component{
         this.handleShowingTerm = this.handleShowingTerm.bind(this);
     }
     handleShowingTerm(){
-        if(this.state.showingTerm==1)this.setState({showingTerm:0});
+        if(this.state.showingTerm===1)this.setState({showingTerm:0});
         else{this.setState({showingTerm:1});}
     }
     handleNext(){
-        this.setState({currentIndex:this.state.currentIndex+1});
+        let size = this.state.set.length;
+        if(this.state.currentIndex+1===size)this.setState({currentIndex:0});
+        else{this.setState({currentIndex:this.state.currentIndex+1});}
     }
     handlePrevious(){
-        this.setState({currentIndex:this.state.currentIndex-1});
+        if(this.state.currentIndex===0)this.setState({currentIndex:this.state.set.length-1});
+        else{this.setState({currentIndex:this.state.currentIndex-1});}
     }
     render(){
             return (<div >
