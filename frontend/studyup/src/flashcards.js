@@ -28,11 +28,11 @@ export class Flashcards extends React.Component{
     }
     render(){
             return (<div >
-                <h1>{this.state.set[this.state.currentIndex][this.state.showingTerm]}</h1>
-                <div id="buttons">
-                    <button onClick={this.handlePrevious}>Previous</button>
-                    <button onClick={this.handleShowingTerm}>Flip flashcard</button>
-                    <button onClick={this.handleNext}>Next</button>
+                <h1 className="alignc">{this.state.set[this.state.currentIndex][this.state.showingTerm]}</h1>
+                <div className="alignc" id="buttons">
+                    <button className="smallcaps button1" onClick={this.handlePrevious}>Previous</button>
+                    <button className="smallcaps button1" onClick={this.handleShowingTerm}>Flip flashcard</button>
+                    <button className="smallcaps button1" onClick={this.handleNext}>Next</button>
                 </div>
             </div>);
     }

@@ -40,7 +40,7 @@ class LoginPage extends React.Component{
     render(){
 
         let login = (
-        <div className="signInForm alignc"><br></br>
+        <div id="backgrad" className="signInForm alignc"><br></br>
             <form onSubmit={this.confirmUser} action="/home">
                 <input type="text" className="inputtext " placeholder="username" id="loginUsername"></input>
                 <input type="text" className="inputtext" placeholder="password" id ="loginPassword"></input><br></br>
@@ -49,7 +49,7 @@ class LoginPage extends React.Component{
             <button className="smallcaps button1" onClick={this.handleLoginSignup}>Sign Up</button>
         </div>);
         let signup = (
-        <div className="loginForm alignc"><br></br>
+        <div id="backgrad" className="loginForm alignc"><br></br>
             <form onSubmit={this.registerUser}>
                 <input type="text" className="inputtext" placeholder="enter a username" id="signupUser"></input>
                 <input type="text" className="inputtext" placeholder="enter a password" id="signupPass"></input>

@@ -16,14 +16,21 @@
 .alignc{
     text-align: center;
     align-items: center;
+    list-style-position: inside;
 }
 
 .inputtext{
     box-sizing: border-box;
-    margin: 8px 0;
-    padding: 10px 15px;
-    background-color: black;
+    margin: 4px 0;
+    padding: 5px 5px;
+    background-color:  gray;
     color:white;
+    display:inline-block;
+}
+
+
+::placeholder{
+    color:black;
 }
 
 .button1{
@@ -35,10 +42,21 @@
     display: inline-block;
     font-size: 15px;
     transition-duration: .5s;
-    margin:2px;
+    margin:4px;
+}
+
+.hr1{
+    width:50%;
+    text-align:center;
 }
 
 .button1:hover{
     background-color: rgba(0, 0, 0, 0.199);
     color: black;
+}
+
+#backgrad{
+	height: 1500px;
+	background-image: linear-gradient(#969494, #a3a9eb);
+    overflow: auto;
 }

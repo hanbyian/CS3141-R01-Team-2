@@ -42,8 +42,8 @@ class HomePage extends React.Component{
     addTerm(){
         let nextTerm = (
             <div className="set element" id={this.state.newSet.length}>
-                <input placeholder="term" id={this.state.newSet.length+"term"}></input>
-                <input placeholder="definition" id={this.state.newSet.length+"definition"}></input>
+                <input className="inputtext alignc" placeholder="term" id={this.state.newSet.length+"term"}></input>
+                <input className="inputtext alignc" placeholder="definition" id={this.state.newSet.length+"definition"}></input>
             </div>
         );
         this.setState({newSetCount:this.state.newSet.push(nextTerm)});
@@ -76,15 +76,15 @@ class HomePage extends React.Component{
         let setView;
         if(this.state.viewState == 1){/* viewState=1 is set creation mode*/
             let firstTerm = (
-            <div className="set element" id={this.state.newSet.length} >
-                <input placeholder="term" id={this.state.newSet.length+"term"}></input>
-                <input placeholder="definition" id={this.state.newSet.length+"definition"}></input>
+            <div  className="set element alignc" id={this.state.newSet.length} >
+                <input className="inputtext alignc" placeholder="term" id={this.state.newSet.length+"term"}></input>
+                <input className="inputtext alignc" placeholder="definition" id={this.state.newSet.length+"definition"}></input>
             </div>
             );
             if(this.state.newSet.length==0)this.state.newSet.push(firstTerm)
             setView=(
-            <div className="newSet">
-                <input type="text" placeholder="Name of Study Set" id="newSetName"></input>
+            <div className="newSet alignc">
+                <input type="text" className="inputtext alignc" placeholder="Name of Study Set" id="newSetName"></input>
                 <div className="memberList" id="createSet">
                     {this.state.newSet}
                 </div>
@@ -96,31 +96,32 @@ class HomePage extends React.Component{
             console.log(sampleSets[this.state.viewingIndex]);
             sampleSets[this.state.viewingIndex].forEach((index,value)=>console.log(index[0],index[1]));
             setView=
-            (<div>
-                <h3 className="smallcaps">{this.state.viewingSet}</h3>
-                <ul>
+            (<div className="alignc">
+                <h3 className="smallcaps alignc">{this.state.viewingSet}</h3>
+                <ul className="alignc">
                 {sampleSets[this.state.viewingIndex].map(e=><li key={e[0]} className="smallcaps">{e[0]} -- {e[1]}</li>)}
                 </ul>
-                <button onClick={this.handleStudyingFlashcards}>Study This Set</button>
+                <button className="smallcaps button1 alignc" onClick={this.handleStudyingFlashcards}>Study This Set</button>
             </div>);
         } else if(this.state.viewState==2){/* viewState=2 is studying a set mode  */
             //do da flashcard ting
             setView=(<Flashcards set={sampleSets[this.state.viewingIndex]}/>);
         }
         return (
-            <div>
+            <div id="backgrad">
             <div className="header">
                 <h1 className="studyupheader">StudyUp</h1>
                 <h2 className="studyupblizz">Sponsored by Blizzard T. Husky</h2>
+                <hr className="hr1"></hr><br></br>
             </div>
             {setView}
-            <div>
-                <h3 className="smallcaps">My Sets</h3>
-                <ul className="smallcaps">
-                    {sampleSetsKeys.length==0? <p>you have no sets</p>: sampleSetsKeys.map(e => (<li key={e[0]}><button onClick = {ee => this.handleViewingSet(e)}>{e[0]}</button></li>))}
+            <div className="alignc">
+                <h3 className="smallcaps alignc">My Sets</h3>
+                <ul className="smallcaps alignc">
+                    {sampleSetsKeys.length==0? <p>you have no sets</p>: sampleSetsKeys.map(e => (<li key={e[0]}><button className="button1" onClick = {ee => this.handleViewingSet(e)}>{e[0]}</button></li>))}
                 </ul>
-                <button className="smallcaps" onClick={this.handleCreating}>+ Create Set</button>
-                <p className="smallcaps">Select a set to view it and study</p>
+                <button className="smallcaps button1" onClick={this.handleCreating}>+ Create Set</button>
+                <p className="smallcaps alignc">Select a set to view it and study</p>
             </div>
             </div>
         );
