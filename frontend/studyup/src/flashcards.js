@@ -27,12 +27,14 @@ export class Flashcards extends React.Component{
         else{this.setState({currentIndex:this.state.currentIndex-1});}
     }
     render(){
-            return (<div >
+            return (<div>
+                <div id="flashcard">
                 <h1 className="alignc">{this.state.set[this.state.currentIndex][this.state.showingTerm]}</h1>
+                </div><br></br>
                 <div className="alignc" id="buttons">
-                    <button className="smallcaps button1" onClick={this.handlePrevious}>Previous</button>
-                    <button className="smallcaps button1" onClick={this.handleShowingTerm}>Flip flashcard</button>
-                    <button className="smallcaps button1" onClick={this.handleNext}>Next</button>
+                    <button className="smallcaps button54" onClick={this.handlePrevious}>Previous</button>
+                    <button className="smallcaps button54" onClick={this.handleShowingTerm}>Flip flashcard</button>
+                    <button className="smallcaps button54" onClick={this.handleNext}>Next</button>
                 </div>
             </div>);
     }
