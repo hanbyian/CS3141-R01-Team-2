@@ -72,15 +72,12 @@ public class TermsService {
         }
 
     }
-//    /**
-//     *
-//     * @param delTerm
-//     */
-//    public void deleteTerm(Terms delTerm) {
-//        termsRepository.delete(delTerm);
-//    }
-    // setTerm, change a term to a given term
-    // setDefinition, change a definition of a given term
-    // checkDefinition and/or getDefinition (does frontend want a boolean or a terms?) given a term
-
+    /**
+     * Removes a term that is currently stored in the database by their id
+     *
+     * @param termID, term ID to be removed
+     */
+    public void delTermByID(Long termID) {
+        termsRepository.deleteById(termID);
+    }
 }

@@ -86,6 +86,16 @@ public class TermsController {
     }
 
     /**
+     * Delete mapping to remove a term that is currently stored
+     *
+     * @param termID, ID of term to delete
+     */
+    @DeleteMapping("/delTermByID/{termID}")
+    public void delTermByID(@PathVariable Long termID) {
+        termsService.delTermByID(termID);
+    }
+
+    /**
      * Get request to return all Study Sets owned by a given user
      *
      * @param studySetID
