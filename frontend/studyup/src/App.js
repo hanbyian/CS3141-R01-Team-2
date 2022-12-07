@@ -1,6 +1,7 @@
 import './App.css';
 import {React, Component} from 'react';
-import { LoginPage,HomePage } from './groups.js';
+import LoginPage from './components/LoginPage';
+import HomePage from './components/HomePage';
 
 function App(){
     return (
