@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,36 +26,36 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        CustomFilter customFilter = new CustomFilter();
-        customFilter.setAuthenticationManager(authenticationManager());
+//        CustomFilter customFilter = new CustomFilter();
+//        customFilter.setAuthenticationManager(authenticationManager());
 
         http
                 .csrf().disable()
-                .addFilterAt(
-                        customFilter,
-                        UsernamePasswordAuthenticationFilter.class
-                )
+//                .addFilterAt(
+//                        customFilter,
+//                        UsernamePasswordAuthenticationFilter.class
+//                )
                 .authorizeRequests()
 //                .antMatchers(HttpMethod.POST, "/login").permitAll()
-                .antMatchers("/registration/**").permitAll()
+                .antMatchers("/registration/**", "/login").permitAll()
 //                .antMatchers("/users/**", "/studyset/**", "/terms/**").permitAll()
 //                .antMatchers("/users/").hasRole("USER")
                 .anyRequest().authenticated()
-
-
                 .and()
-                .formLogin()
+                .logout()
+                .and()
+                .httpBasic()
 //                .loginPage("http://localhost:3000").permitAll()
 //                .loginProcessingUrl("/login")
 //                .successHandler(myAuthenticationSuccessHandler())
-                .defaultSuccessUrl("/users/showusers", true)
+//                .defaultSuccessUrl("/users/showusers", true)
         ;
     }
 
-    @Bean
-    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-        return new MySimpleUrlAuthenticationSuccessHandler();
-    }
+//    @Bean
+//    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+//        return new MySimpleUrlAuthenticationSuccessHandler();
+//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -68,5 +69,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(usersService);
         return provider;
+    }
+
+    @Bean
+    @Override
+    public AuthenticationManager authenticationManagerBean() throws Exception {
+        return super.authenticationManagerBean();
     }
 }

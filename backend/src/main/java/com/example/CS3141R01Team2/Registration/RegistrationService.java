@@ -29,9 +29,10 @@ public class RegistrationService{
         boolean isValidUsername = usernameValidator.test(request.getUsername());
         if(!isValidEmail){
             throw new IllegalStateException("Email not valid");
-        } else if (!isValidUsername){
-            throw new IllegalStateException("Username not valid");
         }
+//        else if (!isValidUsername){
+//            throw new IllegalStateException("Username not valid");
+//        }
         String token = usersService.createUser(
                 new Users(
                         request.getUsername(),
