@@ -14,21 +14,15 @@ class LoginPage extends React.Component{
         this.setState({showLogin:(!this.state.showLogin)});
     }
     async confirmUser(){
+
         if(document.getElementById("loginUsername")!=null){
             const userID = document.getElementById("loginUsername").value;
             const passID = document.getElementById("loginPassword").value;
-            
-            //let toRender = <HomePage username="ijhanby"/>;
-            //root.render(toRender);
-            //await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
-            //{
-            //    console.log(e[1] + ":" + e[2]);
-            //    console.log(userID + ":" + passID);
-            //    if((userID==e[1] && passID==e[2])){
-            //        this.setState({loggedIn:true});
-            //    }
-            //}));
+            if(confirmUserAPI(userID,passID)===true){
+                window.location("/home");
+            }
         }
+
     }
     async registerUser(){
         const username = document.getElementById("signupUser").value;

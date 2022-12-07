@@ -5,9 +5,9 @@ import { Flashcards } from '../flashcards.js';
 import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "../apiFunctions";
 
 const emptySampleData = {};
-const sampleSetsKeys = [["germanSet",0],["spanishSet",1],];
+const sampleSetsKeys = [["German Numbers",0],["Spanish Numbers",1],];
 const sampleSets = [[["one","eins"],["two","zwei"],["three","drei"],["four","vier"]],[["one","uno"],["two","dos"],["three","tres"],["four","quatro"]]];
-const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{germanSet:{one:"eins",two:"zwei",three:"drei",four:"vier"},spanishSet:{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
+const sampleData = {User:{username:"hanbyian",password:"Test123!",firstName:"ian",lastName:"Hanby"},sets:{"German Numbers":{one:"eins",two:"zwei",three:"drei",four:"vier"},"Spanish Numbers":{"one":"uno","two":"dos","three":"tres","four":"quatro"}, japaneseSet:{"one":"ichi","two":"ni","three":"san","four":"yon"}}};//test data until we can setup connection with database
 
 class HomePage extends React.Component{
     constructor(props){
@@ -72,7 +72,7 @@ class HomePage extends React.Component{
             }
     }
     render() {
-        this.separateFunction();
+        //this.separateFunction();
         let setView;
         if(this.state.viewState == 1){/* viewState=1 is set creation mode*/
             let firstTerm = (
@@ -97,7 +97,7 @@ class HomePage extends React.Component{
             sampleSets[this.state.viewingIndex].forEach((index,value)=>console.log(index[0],index[1]));
             setView=
             (<div>
-                <h3 className="smallcaps">{this.state.viewingSet}</h3>
+                <h3 className="smallcaps">{sampleSetsKeys[this.state.viewingSet][0]}</h3>
                 <ul>
                 {sampleSets[this.state.viewingIndex].map(e=><li key={e[0]} className="smallcaps">{e[0]} -- {e[1]}</li>)}
                 </ul>
