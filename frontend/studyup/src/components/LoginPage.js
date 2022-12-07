@@ -18,7 +18,8 @@ class LoginPage extends React.Component{
         if(document.getElementById("loginUsername")!=null){
             const userID = document.getElementById("loginUsername").value;
             const passID = document.getElementById("loginPassword").value;
-            
+            confirmUserAPI(userID, passID);
+
             //let toRender = <HomePage username="ijhanby"/>;
             //root.render(toRender);
             //await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
@@ -42,7 +43,7 @@ class LoginPage extends React.Component{
 
         let login = (
         <div id="background" className="signInForm loginform">
-            <form classnName="form" onSubmit={this.confirmUser} action="/home">
+            <form classnName="form" onSubmit={this.confirmUser}>
                     <input type="text" className="inputtext " placeholder="Username" id="loginUsername"></input>
                     <br/>
                     <input type="text" className="inputtext" placeholder="Password" id ="loginPassword"></input>

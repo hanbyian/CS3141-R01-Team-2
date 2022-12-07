@@ -30,7 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //        customFilter.setAuthenticationManager(authenticationManager());
 
         http
-                .csrf().disable()
+                .cors().and().csrf().disable()
 //                .addFilterAt(
 //                        customFilter,
 //                        UsernamePasswordAuthenticationFilter.class
@@ -51,6 +51,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .defaultSuccessUrl("/users/showusers", true)
         ;
     }
+
+
 
 //    @Bean
 //    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
@@ -76,4 +78,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
+
 }

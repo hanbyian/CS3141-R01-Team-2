@@ -49,15 +49,30 @@ export async function ShowUsersData(){
 }
 export async function confirmUserAPI(U,P){
   let tempData;
-  await fetch("http://54.211.204.247:8181/StudyUp/users/showusers").then(response=>response.json()).then(data=>data.map(e=>
-  {
-      console.log(e[1] + ":" + e[2]);
-      if(U===e[1] && P===e[2]){
-        console.log("OHHH yerd");
-        return true;
-      }
-}));
-  return false;
+    try{
+        let postData = {};
+        postData.username = U;
+        postData.password = P;
+        //let data = {"setName":"mySet", "setOwner":"ijhanby"};setOwner has to be a username in users dataset
+        //mode:no-cors,
+        await fetch("http://localhost:8080/login", {
+            method: "POST",
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(postData)
+        }).then(res => {
+            console.log("Request complete! response:", res);
+            if(res.status === 200){
+                window.location.replace("/home")
+                return;
+            }
+
+        });
+    }
+    catch(e){
+        console.log(e);
+        console.log("did not work for: " + U);
+    }
+  return;
 }
 export async function createStudySet( SN, SO){
     try{
