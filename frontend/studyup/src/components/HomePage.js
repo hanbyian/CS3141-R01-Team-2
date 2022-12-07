@@ -99,7 +99,7 @@ class HomePage extends React.Component{
             setView=
             (<div className="alignc">
                 <div id="setBox" >
-                <h3 className="setText alignc">{this.state.viewingSet}</h3>
+                <h3 className="setText alignc">{sampleSetsKeys[this.state.viewingSet][0]}</h3>
                 <ul className="alignc">
                 {sampleSets[this.state.viewingIndex].map(e=><li key={e[0]} className="setText">{e[0]} -- {e[1]}</li>)}
                 </ul>
