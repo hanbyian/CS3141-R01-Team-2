@@ -3,6 +3,7 @@ import root from '../index.js';
 import {confirmUserAPI,createUser,addTerm,createStudySet, getTermsData, showSetsData, ShowUsersData, allSetsForUser} from "../apiFunctions";
 import HomePage from "./HomePage.js";
 import { Link, useNavigation } from "react-router-dom";
+import '../login.css';
 
 class LoginPage extends React.Component{
     constructor(props){
@@ -40,17 +41,20 @@ class LoginPage extends React.Component{
     render(){
 
         let login = (
-        <div id="backgrad" className="signInForm alignc"><br></br>
-            <form onSubmit={this.confirmUser} action="/home">
-                <input type="text" className="inputtext " placeholder="username" id="loginUsername"></input>
-                <input type="text" className="inputtext" placeholder="password" id ="loginPassword"></input><br></br>
-                <button type="submit" className="smallcaps button1">Log In</button>
+        <div id="background" className="signInForm loginform">
+            <form classnName="form" onSubmit={this.confirmUser} action="/home">
+                    <input type="text" className="inputtext " placeholder="Username" id="loginUsername"></input>
+                    <br/>
+                    <input type="text" className="inputtext" placeholder="Password" id ="loginPassword"></input>
+                
+                <br></br>
+                <button id="btn" type="submit" className="smallcaps button1">Log In</button>
             </form>
-            <button className="smallcaps button1" onClick={this.handleLoginSignup}>Sign Up</button>
+            <button id="btn" className="smallcaps button1" onClick={this.handleLoginSignup}>Sign Up</button>
         </div>);
         let signup = (
         <div id="backgrad" className="loginForm alignc"><br></br>
-            <form onSubmit={this.registerUser}>
+            <form className="form" onSubmit={this.registerUser}>
                 <input type="text" className="inputtext" placeholder="enter a username" id="signupUser"></input>
                 <input type="text" className="inputtext" placeholder="enter a password" id="signupPass"></input>
                 <input type="text" className="inputtext" placeholder="enter an email" id="signupEmail"></input>
