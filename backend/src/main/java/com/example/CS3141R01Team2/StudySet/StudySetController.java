@@ -84,6 +84,15 @@ public class StudySetController {
     }
 
     /**
+     * Delete mapping to remove a term that is currently stored
+     *
+     * @param studySetID, ID of term to delete
+     */
+    @DeleteMapping("/delStudySetByID/{studySetID}")
+    public void delStudySetByID(@PathVariable Long studySetID) {
+        studySetService.delStudySetByID(studySetID);
+    }
+    /**
      * Get Mapping Request to return all Study Sets owned by the current logged in user
      *
      * @return List<ArrayList>

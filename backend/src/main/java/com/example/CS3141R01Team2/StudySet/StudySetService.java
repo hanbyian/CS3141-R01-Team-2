@@ -77,9 +77,14 @@ public class StudySetService {
 
     }
 
-//    public void deleteStudySet(Long setID) {  // does deleteStudySet need a findStudySet method to work?
-//        studySetRepository.delete(studySetRepository.findById(setID));
-//    }
+    /**
+     * Removes a study set that is currently stored in the database by their id
+     *
+     * @param studySetID, study set's id that is to be deleted
+     */
+    public void delStudySetByID(Long studySetID) {
+        studySetRepository.deleteById(studySetID);
+    }
 
 //    public void setSetName(StudySet currentSet, String newSetName) {
 //        currentSet.setSetName(newSetName);
