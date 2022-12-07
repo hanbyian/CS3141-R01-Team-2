@@ -58,7 +58,7 @@
 
 #backgrad {
   height: 100vh;
-  background-image: linear-gradient(#f4f4f4, #a3a9eb);
+  background-image: linear-gradient(#E9ECEF, #6C757D);
   overflow: auto;
 }
 
@@ -70,8 +70,9 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  background-color: #f4f4f4;
+  background-color: #E9ECEF;
   padding-top: 25px;
+  border-radius: 8px;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.9);
 }
 
@@ -92,6 +93,7 @@
   -webkit-user-select: none;
   touch-action: manipulation;
   margin: 4px;
+  border-radius: 8px;
 }
 
 .button54:active {
@@ -121,12 +123,13 @@
   height: 40px;
   border: none;
   border-bottom: 1px solid #8d8d8d;
-  background-color: #f4f4f4;
+  background-color: #E9ECEF;
   padding: 0 16px;
   color: #161616;
   margin: 4px;
   transition: background-color 70ms cubic-bezier(0.2, 0, 0.38, 0.9),
     outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  border-radius: 8px;
 }
 :focus {
   outline: 2px solid #070707;
@@ -144,7 +147,8 @@
   margin: auto;
   justify-content: center;
   align-items: center;
-  background-color: #f4f4f4;
+  background-color: #E9ECEF;
+  border-radius: 8px;
   padding: 0.25em 0.5em;
   box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
     5px 5px 0px 0px;
