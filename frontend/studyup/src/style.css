@@ -1,44 +1,155 @@
-.studyupheader{
-    color: black;
-    font-size: 500%;
-    text-align: center;
-    font-variant: small-caps;
+@import url("login.css");
+
+.studyupheader {
+  color: black;
+  font-size: 500%;
+  text-align: center;
+  font-variant: small-caps;
 }
-.studyupblizz{
-    text-align: center;
-    font-variant: small-caps;
+.studyupblizz {
+  text-align: center;
+  font-variant: small-caps;
 }
 
-.smallcaps{
-    font-variant: small-caps;
+.smallcaps {
+  font-variant: small-caps;
 }
 
-.alignc{
-    text-align: center;
-    align-items: center;
+.alignc {
+  text-align: center;
+  align-items: center;
+  list-style-position: inside;
 }
 
-.inputtext{
-    box-sizing: border-box;
-    margin: 8px 0;
-    padding: 10px 15px;
-    background-color: black;
-    color:white;
+.inputtext {
+  box-sizing: border-box;
+  margin: 4px 0;
+  padding: 5px 5px;
+  background-color: gray;
+  color: white;
+  display: inline-block;
 }
 
-.button1{
-    background-color: gray;
-    border: 5px black;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    display: inline-block;
-    font-size: 15px;
-    transition-duration: .5s;
-    margin:2px;
+::placeholder {
+  color: black;
 }
 
-.button1:hover{
-    background-color: rgba(0, 0, 0, 0.199);
-    color: black;
+.button1 {
+  background-color: gray;
+  border: 5px black;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  display: inline-block;
+  font-size: 15px;
+  transition-duration: 0.5s;
+  margin: 4px;
+}
+
+.hr1 {
+  width: 50%;
+  text-align: center;
+}
+
+.button1:hover {
+  background-color: rgba(0, 0, 0, 0.199);
+  color: black;
+}
+
+#backgrad {
+  height: 100vh;
+  background-image: linear-gradient(#E9ECEF, #6C757D);
+  overflow: auto;
+}
+
+#flashcard {
+  width: 24vw;
+  height: 12vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: #E9ECEF;
+  padding-top: 25px;
+  border-radius: 8px;
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.9);
+}
+
+.button54 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+  letter-spacing: 2px;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+  cursor: pointer;
+  border: 3px solid;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  margin: 4px;
+  border-radius: 8px;
+}
+
+.button54:active {
+  box-shadow: 0px 0px 0px 0px;
+  top: 5px;
+  left: 5px;
+}
+
+@media (min-width: 768px) {
+  .button54 {
+    padding: 0.25em 0.75em;
+  }
+}
+
+.inp {
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 14px;
+  vertical-align: baseline;
+  font-weight: 400;
+  line-height: 1.29;
+  letter-spacing: 0.16px;
+  border-radius: 0;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  width: auto;
+  height: 40px;
+  border: none;
+  border-bottom: 1px solid #8d8d8d;
+  background-color: #E9ECEF;
+  padding: 0 16px;
+  color: #161616;
+  margin: 4px;
+  transition: background-color 70ms cubic-bezier(0.2, 0, 0.38, 0.9),
+    outline 70ms cubic-bezier(0.2, 0, 0.38, 0.9);
+  border-radius: 8px;
+}
+:focus {
+  outline: 2px solid #070707;
+  outline-offset: -2px;
+}
+
+.setText {
+  font-family: "Open Sans", sans-serif;
+  font-size: 20px;
+}
+
+#setBox {
+  width: 30%;
+  height: 50%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: #E9ECEF;
+  border-radius: 8px;
+  padding: 0.25em 0.5em;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
 }

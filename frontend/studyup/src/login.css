@@ -1,0 +1,56 @@
+.loginform {
+  text-align: center;
+  align-items: center;
+  list-style-position: inside;
+}
+
+p > #tags {
+  align-items: left;
+  align-text: left;
+}
+
+input[type="text"] {
+  /* margin-bottom: 1%; */
+  background-color: #e9ecef;
+  border: 2px solid #e9ecef;
+  border-radius: 7px;
+  padding: 2%;
+  color: #212529;
+}
+
+input[type="text"]:focus {
+  /* margin-bottom: 1%; */
+  outline: 2px solid #212529;
+  outline-offset: -2px;
+}
+
+#btn:hover {
+  cursor: pointer;
+  background-color: #ced4da;
+  border-radius: 7px;
+  text-decoration: underline;
+  color: #212529;
+}
+
+#btn {
+  background-color: #6c757d;
+  border-radius: 7px;
+  color: #e9ecef;
+}
+
+#background {
+  /* height: 100vh;
+  background-color: #f8f9fa; */
+  border: 2px solid #212529;
+  border-radius: 15px;
+
+  background-color: #adb5bd;
+  
+  /* padding-top: 2%;*/
+  padding-top: 2%;
+  padding-bottom: 2%;
+
+  margin-top: 2%;
+  margin-left: 30%;
+  margin-right: 30%;
+}
