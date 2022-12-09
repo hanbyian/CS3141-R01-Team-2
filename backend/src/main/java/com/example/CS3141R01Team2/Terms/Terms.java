@@ -30,7 +30,7 @@ public class Terms {
     @NonNull
     private Long termID;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "parentSet")
     @NonNull
     private StudySet parentSet;

@@ -73,18 +73,18 @@ public class Users implements UserDetails {
     private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
-//
-//    public List<StudySet> getStudySets() {
-//        return studySets;
-//    }
-//
-//    public void setStudySets(List<StudySet> studySets) {
-//        this.studySets = studySets;
-//    }
-//
-//    @OneToMany(mappedBy="setID")
-//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    private List<StudySet> studySets;
+
+    public List<StudySet> getStudySets() {
+        return studySets;
+    }
+
+    public void setStudySets(List<StudySet> studySets) {
+        this.studySets = studySets;
+    }
+
+    @OneToMany(mappedBy="setID")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<StudySet> studySets;
 
     @NonNull
     public Long getUserID() {

@@ -43,7 +43,7 @@ public class RegistrationService{
                 )
         );
 
-        String link="http://localhost:8080/registration/confirm?token=" + token;
+        String link="http://44.203.88.45:8181/StudyUp/registration/confirm?token=" + token;
 
         emailSender.send(request.getEmail(),
                 buildEmail(request.getName(), link));

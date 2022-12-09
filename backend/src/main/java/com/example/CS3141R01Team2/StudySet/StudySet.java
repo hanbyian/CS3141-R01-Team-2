@@ -40,14 +40,14 @@ public class StudySet {
     @NonNull
     private String setName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "setOwner")
     @NonNull
     private Users setOwner;
 
-//    @OneToMany(mappedBy = "parentSet")
-//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    private Set<Terms> terms;
+    @OneToMany(mappedBy = "parentSet")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private Set<Terms> terms;
 
     public String getSetName() {
         return setName;

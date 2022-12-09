@@ -46,7 +46,7 @@ public class UsersService implements UserDetailsService {
      * @return List of ArrayList of each users information each ArrayList containing
      * a users ID, username, password, email, and name
      */
-    public List<Users> showUsers(){
+    public List<ArrayList<?>> showUsers(){
        return usersRepository.findAllUsers(); //returns list of all users
     }
 

@@ -34,7 +34,7 @@ public class UsersController {
      * @return List of ArrayLists containing each Users registration information
      */
     @GetMapping ("/showusers")//States that the following method is a Get Request
-    public List<Users> showUsers(){
+    public List<ArrayList<?>> showUsers(){
       return userService.showUsers();
     }
 
