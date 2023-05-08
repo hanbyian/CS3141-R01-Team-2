@@ -73,18 +73,18 @@ public class Users implements UserDetails {
     private UserRole userRole;
     private Boolean locked = false;
     private Boolean enabled = false;
-//
-//    public List<StudySet> getStudySets() {
-//        return studySets;
-//    }
-//
-//    public void setStudySets(List<StudySet> studySets) {
-//        this.studySets = studySets;
-//    }
-//
-//    @OneToMany(mappedBy="setID")
-//    @Cascade(org.hibernate.annotations.CascadeType.ALL)
-//    private List<StudySet> studySets;
+
+    public List<StudySet> getStudySets() {
+        return studySets;
+    }
+
+    public void setStudySets(List<StudySet> studySets) {
+        this.studySets = studySets;
+    }
+
+    @OneToMany(mappedBy="setID")
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<StudySet> studySets;
 
     @NonNull
     public Long getUserID() {
@@ -162,5 +162,19 @@ public class Users implements UserDetails {
         this.email = email;
         this.name = name;
         this.userRole = userRole;
+    }
+
+    public Users(@NonNull String username,
+                 @NonNull String password,
+                 @NonNull String email,
+                 @NonNull String name,
+                 UserRole userRole,
+                 Boolean enabled) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.name = name;
+        this.userRole = userRole;
+        this.enabled = enabled;
     }
 }

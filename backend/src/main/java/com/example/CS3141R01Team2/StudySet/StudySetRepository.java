@@ -34,6 +34,6 @@ public interface StudySetRepository
      *
      * @return A List of ArrayLists for each study set in the system
      */
-    @Query("SELECT u.setID, u.setName, u.setOwner.username FROM studyset u")
+    @Query("SELECT u.setID, u.setName FROM studyset u")
     public List<ArrayList<?>> showAllSets();
 }

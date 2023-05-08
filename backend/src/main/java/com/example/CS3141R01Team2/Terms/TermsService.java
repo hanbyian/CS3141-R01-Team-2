@@ -55,15 +55,29 @@ public class TermsService {
         }
     }
 
-//    /**
-//     *
-//     * @param delTerm
-//     */
-//    public void deleteTerm(Terms delTerm) {
-//        termsRepository.delete(delTerm);
-//    }
-    // setTerm, change a term to a given term
-    // setDefinition, change a definition of a given term
-    // checkDefinition and/or getDefinition (does frontend want a boolean or a terms?) given a term
+    /**
+     * Returns terms of a given study set's id, if the study set's id doesn't exist
+     * return an error message
+     *
+     * @param studySetID
+     * @return listOfTerms
+     */
+    public List<ArrayList<?>> showTermsForStudySet(Long studySetID) {
+        Optional<StudySet> getTermsByID = studySetRepository.findById(studySetID);
+        if (getTermsByID.isPresent()) {
+            List<ArrayList<?>>  listOfTerms= termsRepository.showTermsByStudySet(studySetID);
+            return listOfTerms;
+        } else {
+            throw new IllegalStateException("Study set does not exist!");
+        }
 
+    }
+    /**
+     * Removes a term that is currently stored in the database by their id
+     *
+     * @param termID, term ID to be removed
+     */
+    public void delTermByID(Long termID) {
+        termsRepository.deleteById(termID);
+    }
 }

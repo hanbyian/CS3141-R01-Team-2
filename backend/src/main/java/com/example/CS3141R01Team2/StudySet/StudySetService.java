@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import com.example.CS3141R01Team2.Users.Users;
 import com.example.CS3141R01Team2.Users.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 /**
@@ -75,9 +77,14 @@ public class StudySetService {
 
     }
 
-//    public void deleteStudySet(Long setID) {  // does deleteStudySet need a findStudySet method to work?
-//        studySetRepository.delete(studySetRepository.findById(setID));
-//    }
+    /**
+     * Removes a study set that is currently stored in the database by their id
+     *
+     * @param studySetID, study set's id that is to be deleted
+     */
+    public void delStudySetByID(Long studySetID) {
+        studySetRepository.deleteById(studySetID);
+    }
 
 //    public void setSetName(StudySet currentSet, String newSetName) {
 //        currentSet.setSetName(newSetName);

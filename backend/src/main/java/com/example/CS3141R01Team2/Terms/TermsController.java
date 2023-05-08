@@ -84,4 +84,25 @@ public class TermsController {
     public void addTerm(@RequestBody Request request) {
         termsService.addTerm(request.getParentSetID(), request.getTerm(), request.getDefinition());
     }
+
+    /**
+     * Delete mapping to remove a term that is currently stored
+     *
+     * @param termID, ID of term to delete
+     */
+    @DeleteMapping("/delTermByID/{termID}")
+    public void delTermByID(@PathVariable Long termID) {
+        termsService.delTermByID(termID);
+    }
+
+    /**
+     * Get request to return all Study Sets owned by a given user
+     *
+     * @param studySetID
+     * @return List<ArrayList>
+     */
+    @GetMapping("/showTermsForStudySet/{studySetID}")
+    public List<ArrayList<?>> showTermsForStudySet(@PathVariable Long studySetID) {
+        return termsService.showTermsForStudySet(studySetID);
+    }
 }

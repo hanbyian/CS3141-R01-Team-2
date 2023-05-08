@@ -43,6 +43,18 @@ class StudySetControllerTest {
     }
 
     /**
+     * Method under test: {@link StudySetController#delStudySetByID(Long)}
+     */
+    @Test
+    void testDelStudySetByID() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/delStudySetByID/{studySetID}", 1L);
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(studySetController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    /**
      * Methods under test:
      *
      * <ul>
@@ -75,11 +87,11 @@ class StudySetControllerTest {
     }
 
     /**
-     * Method under test: {@link StudySetController#showSetsForUser(String)}
+     * Method under test: {@link StudySetController#showSetsForUser()}
      */
     @Test
     void testShowSetsForUser() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/showSetsForUser/{username}", "janedoe");
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/showSetsForUser");
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(studySetController)
                 .build()
                 .perform(requestBuilder);

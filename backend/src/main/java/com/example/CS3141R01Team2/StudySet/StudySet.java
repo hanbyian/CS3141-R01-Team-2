@@ -40,7 +40,7 @@ public class StudySet {
     @NonNull
     private String setName;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "setOwner")
     @NonNull
     private Users setOwner;

@@ -43,11 +43,23 @@ class TermsControllerTest {
     }
 
     /**
+     * Method under test: {@link TermsController#delTermByID(Long)}
+     */
+    @Test
+    void testDelTermByID() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.delete("/delTermByID/{termID}", 1L);
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(termsController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+
+    /**
      * Method under test: {@link TermsController#getList()}
      */
     @Test
     void testGetList() throws Exception {
-        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/");
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/getTerms");
         ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(termsController)
                 .build()
                 .perform(requestBuilder);
@@ -76,6 +88,19 @@ class TermsControllerTest {
         assertEquals("Definition", actualRequest.getDefinition());
         assertEquals(1L, actualRequest.getParentSetID().longValue());
         assertEquals("Term", actualRequest.getTerm());
+    }
+
+    /**
+     * Method under test: {@link TermsController#showTermsForStudySet(Long)}
+     */
+    @Test
+    void testShowTermsForStudySet() throws Exception {
+        MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/showTermsForStudySet/{studySetID}",
+                1L);
+        ResultActions actualPerformResult = MockMvcBuilders.standaloneSetup(termsController)
+                .build()
+                .perform(requestBuilder);
+        actualPerformResult.andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
 
