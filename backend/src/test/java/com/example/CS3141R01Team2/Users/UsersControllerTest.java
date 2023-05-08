@@ -35,7 +35,6 @@ class UsersControllerTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         String content = (new ObjectMapper()).writeValueAsString(users);
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.post("/createUser")

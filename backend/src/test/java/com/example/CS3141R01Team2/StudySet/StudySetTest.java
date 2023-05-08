@@ -31,7 +31,6 @@ class StudySetTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         actualStudySet.setSetOwner(users);
         assertNull(actualStudySet.getSetID());
@@ -57,7 +56,6 @@ class StudySetTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
         StudySet actualStudySet = new StudySet("Set Name", users);
         actualStudySet.setSetName("Set Name");
@@ -65,7 +63,6 @@ class StudySetTest {
         users1.setEmail("jane.doe@example.org");
         users1.setName("Name");
         users1.setPassword("iloveyou");
-        users1.setStudySets(new ArrayList<>());
         users1.setUsername("janedoe");
         actualStudySet.setSetOwner(users1);
         assertNull(actualStudySet.getSetID());

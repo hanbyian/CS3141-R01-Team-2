@@ -35,14 +35,12 @@ class UsersTest {
         actualUsers.setName("Name");
         actualUsers.setPassword("iloveyou");
         ArrayList<StudySet> studySetList = new ArrayList<>();
-        actualUsers.setStudySets(studySetList);
         actualUsers.setUsername("janedoe");
         Users users = new Users();
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
         ArrayList<StudySet> studySetList1 = new ArrayList<>();
-        users.setStudySets(studySetList1);
         users.setUsername("janedoe");
         StudySet studySet = new StudySet();
         studySet.setSetName("Set Name");
@@ -50,9 +48,6 @@ class UsersTest {
         assertEquals("jane.doe@example.org", actualUsers.getEmail());
         assertEquals("Name", actualUsers.getName());
         assertEquals("iloveyou", actualUsers.getPassword());
-        List<StudySet> studySets = actualUsers.getStudySets();
-        assertSame(studySetList, studySets);
-        assertEquals(studySetList1, studySets);
         assertEquals("janedoe", actualUsers.getUsername());
     }
 
@@ -81,14 +76,12 @@ class UsersTest {
         actualUsers.setName("Name");
         actualUsers.setPassword("iloveyou");
         ArrayList<StudySet> studySetList = new ArrayList<>();
-        actualUsers.setStudySets(studySetList);
         actualUsers.setUsername("janedoe");
         Users users = new Users();
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
         ArrayList<StudySet> studySetList1 = new ArrayList<>();
-        users.setStudySets(studySetList1);
         users.setUsername("janedoe");
         StudySet studySet = new StudySet();
         studySet.setSetName("Set Name");
@@ -96,9 +89,6 @@ class UsersTest {
         assertEquals("jane.doe@example.org", actualUsers.getEmail());
         assertEquals("Name", actualUsers.getName());
         assertEquals("iloveyou", actualUsers.getPassword());
-        List<StudySet> studySets = actualUsers.getStudySets();
-        assertSame(studySetList, studySets);
-        assertEquals(studySetList1, studySets);
         assertEquals("janedoe", actualUsers.getUsername());
     }
 }

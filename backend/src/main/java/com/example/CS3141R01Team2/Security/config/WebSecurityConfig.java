@@ -1,4 +1,4 @@
-package com.example.CS3141R01Team2.Registration.Security.config;
+package com.example.CS3141R01Team2.Security.config;
 
 import com.example.CS3141R01Team2.Users.UsersService;
 import lombok.AllArgsConstructor;

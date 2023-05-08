@@ -69,7 +69,6 @@ class TermsServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         StudySet studySet = new StudySet();
@@ -86,7 +85,6 @@ class TermsServiceTest {
         users1.setEmail("jane.doe@example.org");
         users1.setName("Name");
         users1.setPassword("iloveyou");
-        users1.setStudySets(new ArrayList<>());
         users1.setUsername("janedoe");
 
         StudySet studySet1 = new StudySet();
@@ -110,7 +108,6 @@ class TermsServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         StudySet studySet = new StudySet();
@@ -132,7 +129,6 @@ class TermsServiceTest {
         users.setEmail("jane.doe@example.org");
         users.setName("Name");
         users.setPassword("iloveyou");
-        users.setStudySets(new ArrayList<>());
         users.setUsername("janedoe");
 
         StudySet studySet = new StudySet();
